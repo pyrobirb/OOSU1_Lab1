@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{04F4E196-6E19-4D7A-90EE-DC866BD9E6F6}</ProjectGuid>
+    <ProjectGuid>{883BE23C-9290-4F7B-A900-505501A2ACAB}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>OOSU1_Lab1</RootNamespace>
-    <AssemblyName>OOSU1_Lab1</AssemblyName>
+    <RootNamespace>Presentationslager</RootNamespace>
+    <AssemblyName>Presentationslager</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -54,6 +54,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -75,6 +78,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Business layer\Business layer.csproj">
+      <Project>{9111bb01-5698-48d2-90e7-74ead860dddc}</Project>
+      <Name>Business layer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

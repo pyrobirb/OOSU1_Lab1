@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OOSU1_Lab1.Properties
+namespace Presentationslager.Properties
 {
 
 

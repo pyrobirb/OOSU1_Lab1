@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Business_layer;
 
-namespace OOSU1_Lab1
+namespace Presentationslager
 {
     static class Program
     {
