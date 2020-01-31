@@ -7,12 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Business_layer;
+using BusinessLayer;
 
 namespace Presentationslager
 {
     public partial class Form1 : Form
     {
+        Bok b = new Bok();
+        DataRepositoryManager drm = new DataRepositoryManager();
         public Form1()
         {
             InitializeComponent();
@@ -20,7 +22,7 @@ namespace Presentationslager
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            var list = drm.HämtaAllaBokningar();
         }
     }
 }

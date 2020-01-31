@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Business_layer
 {
-    class Bokning
+    public class Bokning
     {
 		private string bokningsNummer;
 		public string BokningsNummer
@@ -33,5 +33,6 @@ namespace Business_layer
 			get { return återlämningsDatum; }
 			set { återlämningsDatum = value; }
 		}
+		
 	}
 }

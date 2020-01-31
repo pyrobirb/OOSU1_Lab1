@@ -6,6 +6,14 @@ namespace Business_layer
 {
     class Faktura
     {
+		private string fakturaNummer;
+
+		public string FakturaNummer
+		{
+			get { return fakturaNummer; }
+			set { fakturaNummer = value; }
+		}
+
 		private string totalpris;
 		public string Totalpris
 		{

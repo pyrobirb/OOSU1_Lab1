@@ -33,5 +33,7 @@ namespace Business_layer
 			get { return antalKopior; }
 			set { antalKopior = value; }
 		}
+
+		
 	}
 }

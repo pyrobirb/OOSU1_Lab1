@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Business_layer.Repository
+namespace BusinessLayer.DataRepository
 {
-    class BokRepository
+    class FakturaRepository
     {
     }
 }
