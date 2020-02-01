@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BusinessLayer
 {
-    class Expedit
+    public class Expedit
     {
 		private string anställningsNummer;
 		public string AnställningsNummer

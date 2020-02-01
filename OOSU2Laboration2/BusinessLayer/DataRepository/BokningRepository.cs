@@ -14,7 +14,19 @@ namespace BusinessLayer.DataRepository
 
 		public Bokning GetById(string id)
 		{
-			throw new NotImplementedException();
+			foreach (Bokning bokn in bokningarLista)
+			{
+				if (bokn.BokningsNummer == id)
+				{
+					Bokning hittadBokn = bokn;
+					return hittadBokn;
+				}
+				else
+				{
+					return null;
+				}
+			}
+			return null;
 		}
 
 		public IEnumerable<Bokning> HämtaAlla()

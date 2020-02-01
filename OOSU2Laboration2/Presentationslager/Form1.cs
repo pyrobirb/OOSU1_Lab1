@@ -13,7 +13,7 @@ namespace Presentationslager
 {
     public partial class Form1 : Form
     {
-        Bok b = new Bok();
+        
         DataRepositoryManager drm = new DataRepositoryManager();
         public Form1()
         {

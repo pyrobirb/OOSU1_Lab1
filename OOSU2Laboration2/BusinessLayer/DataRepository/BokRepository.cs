@@ -27,7 +27,7 @@ namespace BusinessLayer.DataRepository
 
         public IEnumerable<Bok> HämtaAlla()
         {
-            throw new NotImplementedException();
+            return bokLista;
         }
 
         public void LäggTill(Bok entity)

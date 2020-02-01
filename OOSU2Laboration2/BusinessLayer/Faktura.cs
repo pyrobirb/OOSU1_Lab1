@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BusinessLayer
 {
-    class Faktura
+    public class Faktura
     {
 		private string fakturaNummer;
 
