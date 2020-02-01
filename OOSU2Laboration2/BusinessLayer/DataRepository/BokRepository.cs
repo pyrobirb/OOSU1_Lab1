@@ -9,7 +9,7 @@ namespace BusinessLayer.DataRepository
     {
         List<Bok> bokLista { get; set; }
 
-        public Bok GetById(string id)
+        public Bok HämtaMedID(string id)
         {
             foreach (Bok bok in bokLista)
             {

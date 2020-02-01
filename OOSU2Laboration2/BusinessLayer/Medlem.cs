@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 
 namespace BusinessLayer
 {
     public class Medlem
     {
+		List<Bokning> BokningsLista { get; set; }
+
 		private string medlemsNummer;
 		public string MedlemsNummer
 		{
@@ -44,6 +48,15 @@ namespace BusinessLayer
 			return FörNamn + " " + EfterNamn;
 		}
 
+		public Medlem(string medlemsnummer, string förnamn, string efternamn, string telefonnummer, string epost, List<Bokning> bokningsLista)
+		{
+			MedlemsNummer = medlemsnummer;
+			FörNamn = förnamn;
+			EfterNamn = efternamn;
+			Telefonnummer = telefonnummer;
+			Epost = epost;
+			BokningsLista = bokningsLista;
+		}
 
 	}
 }

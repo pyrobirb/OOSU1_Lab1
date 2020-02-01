@@ -11,7 +11,7 @@ namespace BusinessLayer.DataRepository
 		List<Bokning> bokningarLista { get; set; }
 		
 
-		public Bokning GetById(string id)
+		public Bokning HämtaMedID(string id)
 		{
 			foreach (Bokning bokn in bokningarLista)
 			{

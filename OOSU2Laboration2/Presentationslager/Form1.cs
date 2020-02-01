@@ -22,7 +22,7 @@ namespace Presentationslager
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            var list = drm.HämtaAllaBokningar();
+            
         }
     }
 }

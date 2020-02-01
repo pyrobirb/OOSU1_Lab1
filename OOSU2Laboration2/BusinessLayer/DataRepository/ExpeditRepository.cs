@@ -8,7 +8,7 @@ namespace BusinessLayer.DataRepository
     internal class ExpeditRepository : IRepository<Expedit>
     {
         List<Expedit> expediterLista { get; set; }
-        public Expedit GetById(string id)
+        public Expedit HämtaMedID(string id)
         {
             foreach (Expedit expedit in expediterLista)
             {

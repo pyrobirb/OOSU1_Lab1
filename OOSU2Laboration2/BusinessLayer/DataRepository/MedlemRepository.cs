@@ -8,7 +8,7 @@ namespace BusinessLayer.DataRepository
     internal class MedlemRepository : IRepository<Medlem>
     {
         List<Medlem> medlemmar = new List<Medlem>();
-        public Medlem GetById(string id)
+        public Medlem HämtaMedID(string id)
         {
             foreach (Medlem medlem in medlemmar)
             {

@@ -6,6 +6,8 @@ namespace BusinessLayer
 {
     public class Faktura
     {
+		Bokning faktureradBokning { get; set; }
+
 		private string fakturaNummer;
 
 		public string FakturaNummer
@@ -28,12 +30,19 @@ namespace BusinessLayer
 			set { startDatum = value; }
 		}
 
-		private DateTime slutDatum;
-		public DateTime SlutDatum
+		private DateTime förfallodatum;
+		public DateTime FörfalloDatum
 		{
-			get { return slutDatum; }
-			set { slutDatum = value; }
+			get { return förfallodatum; }
+			set { förfallodatum = value; }
 		}
-
+		public Faktura(string fakturanummer, string totalpris, DateTime startDatum, DateTime förfallodatum, Bokning bokning)
+		{
+			FakturaNummer = fakturanummer;
+			Totalpris = totalpris;
+			StartDatum = startDatum;
+			FörfalloDatum = förfallodatum;
+			faktureradBokning = bokning;
+		}
 	}
 }

@@ -8,7 +8,7 @@ namespace BusinessLayer.DataRepository
     {
         void LäggTill(T entity); //create
         IEnumerable<T> HämtaAlla(); //read
-        T GetById(string id);
+        T HämtaMedID(string id);
         void Uppdatera(T entity);
         void TaBort(T entity); //delete
 

@@ -22,7 +22,7 @@ namespace BusinessLayer
 
         public Bokning GetBokningByID(string id)
         {
-            return BoknRep.GetById(id);
+            return BoknRep.HämtaMedID(id);
         }
 
         public void LäggTillBokning(Bokning bokning)
@@ -50,7 +50,7 @@ namespace BusinessLayer
 
         public Bok GetBokByID(string id)
         {
-            return BokRep.GetById(id);
+            return BokRep.HämtaMedID(id);
         }
 
         public void LäggTillBok(Bok bok)
@@ -77,7 +77,7 @@ namespace BusinessLayer
 
         public Expedit GetExpeditByID(string id)
         {
-            return ExpRep.GetById(id);
+            return ExpRep.HämtaMedID(id);
         }
 
         public void LäggTillExpedit(Expedit expedit)
@@ -105,7 +105,7 @@ namespace BusinessLayer
 
         public Faktura GetFakturaByID(string id)
         {
-            return FakRep.GetById(id);
+            return FakRep.HämtaMedID(id);
         }
 
         public void LäggTillExpedit(Faktura faktura)
@@ -134,7 +134,7 @@ namespace BusinessLayer
         
         public Medlem GetMedlemByID(string id)
         {
-            return MedRep.GetById(id);
+            return MedRep.HämtaMedID(id);
         }
 
         public void LäggTillExpedit(Medlem medlem)
