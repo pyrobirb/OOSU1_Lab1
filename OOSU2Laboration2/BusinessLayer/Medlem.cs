@@ -12,11 +12,17 @@ namespace BusinessLayer
 			set { medlemsNummer = value; }
 		}
 
-		private string namn;
-		public string Namn
+		private string förNamn;
+		public string FörNamn
 		{
-			get { return namn; }
-			set { namn = value; }
+			get { return förNamn; }
+			set { förNamn = value; }
+		}
+		private string efterNamn;
+		public string EfterNamn
+		{
+			get { return efterNamn; }
+			set { efterNamn = value; }
 		}
 
 		private string telefonnummer;
@@ -33,6 +39,10 @@ namespace BusinessLayer
 			set { epost = value; }
 		}
 
+		public string MedlemFullName()
+		{
+			return FörNamn + " " + EfterNamn;
+		}
 
 
 	}

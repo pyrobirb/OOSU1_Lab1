@@ -1,34 +1,50 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace BusinessLayer.DataRepository
 {
-    class FakturaRepository : IRepository<Faktura>
+    internal class FakturaRepository : IRepository<Faktura>
     {
+        List<Faktura> fakturorLista { get; set; }
         public Faktura GetById(string id)
         {
-            throw new NotImplementedException();
+            foreach (Faktura faktura in fakturorLista)
+            {
+                if (faktura.FakturaNummer == id)
+                {
+                    Faktura hittadFaktura = faktura;
+                    return hittadFaktura;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            return null;
         }
 
         public IEnumerable<Faktura> HämtaAlla()
         {
-            throw new NotImplementedException();
+            return fakturorLista ;
         }
 
-        public void LäggTill(Faktura entity)
+        public void LäggTill(Faktura faktura)
         {
-            throw new NotImplementedException();
+            fakturorLista.Add(faktura);
         }
 
-        public void TaBort(Faktura entity)
+        public void TaBort(Faktura faktura)
         {
-            throw new NotImplementedException();
+            fakturorLista.Remove(fakturorLista.SingleOrDefault(f => f.FakturaNummer == faktura.FakturaNummer));
         }
 
-        public void Uppdatera(Faktura entity)
+        public void Uppdatera(Faktura faktura)
         {
-            throw new NotImplementedException();
+            fakturorLista.Remove(fakturorLista.SingleOrDefault(f => f.FakturaNummer == faktura.FakturaNummer));
+            fakturorLista.Add(faktura);
+
         }
     }
 }

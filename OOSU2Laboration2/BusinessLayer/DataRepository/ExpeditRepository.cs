@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace BusinessLayer.DataRepository
@@ -9,7 +10,19 @@ namespace BusinessLayer.DataRepository
         List<Expedit> expediterLista { get; set; }
         public Expedit GetById(string id)
         {
-            throw new NotImplementedException();
+            foreach (Expedit expedit in expediterLista)
+            {
+                if (expedit.AnställningsNummer == id)
+                {
+                    Expedit hittadExpedit = expedit;
+                    return hittadExpedit;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            return null;
         }
 
         public IEnumerable<Expedit> HämtaAlla()
@@ -17,19 +30,20 @@ namespace BusinessLayer.DataRepository
             return expediterLista;
         }
 
-        public void LäggTill(Expedit entity)
+        public void LäggTill(Expedit expedit)
         {
-            throw new NotImplementedException();
+            expediterLista.Add(expedit);
         }
 
-        public void TaBort(Expedit entity)
+        public void TaBort(Expedit expedit)
         {
-            throw new NotImplementedException();
+            expediterLista.Remove(expediterLista.SingleOrDefault(e => e.AnställningsNummer == expedit.AnställningsNummer));
         }
 
-        public void Uppdatera(Expedit entity)
+        public void Uppdatera(Expedit expedit)
         {
-            throw new NotImplementedException();
+            expediterLista.Remove(expediterLista.SingleOrDefault(e => e.AnställningsNummer == expedit.AnställningsNummer));
+            expediterLista.Add(expedit);
         }
     }
 }

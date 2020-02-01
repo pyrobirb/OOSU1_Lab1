@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace BusinessLayer.DataRepository
 {
-    class BokRepository : IRepository<Bok>
+    internal class BokRepository : IRepository<Bok>
     {
         List<Bok> bokLista { get; set; }
 
@@ -30,19 +31,21 @@ namespace BusinessLayer.DataRepository
             return bokLista;
         }
 
-        public void LäggTill(Bok entity)
+        public void LäggTill(Bok bok)
         {
-            throw new NotImplementedException();
+            bokLista.Add(bok);
+
         }
 
-        public void TaBort(Bok entity)
+        public void TaBort(Bok bok)
         {
-            throw new NotImplementedException();
+            bokLista.Remove(bokLista.SingleOrDefault(b => b.ISBNNummer == bok.ISBNNummer));
         }
 
-        public void Uppdatera(Bok entity)
+        public void Uppdatera(Bok bok)
         {
-            throw new NotImplementedException();
+            bokLista.Remove(bokLista.SingleOrDefault(b => b.ISBNNummer == bok.ISBNNummer));
+            bokLista.Add(bok);
         }
     }
 }

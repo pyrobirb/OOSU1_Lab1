@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace BusinessLayer.DataRepository
 {
-    class BokningRepository : IRepository<Bokning>
+    internal class BokningRepository : IRepository<Bokning>
     {
-		List<Bok> bokLista { get; set; }
+		
 		List<Bokning> bokningarLista { get; set; }
-		Expedit Expedit { get; set; }
-		Medlem Medlem { get; set; }
-		List<Faktura> FakturaLista { get; set; }
+		
 
 		public Bokning GetById(string id)
 		{
@@ -34,19 +33,20 @@ namespace BusinessLayer.DataRepository
 			return bokningarLista;
 		}
 
-		public void LäggTill(Bokning entity)
+		public void LäggTill(Bokning bokning)
 		{
-			throw new NotImplementedException();
+			bokningarLista.Add(bokning);
 		}
 
-		public void TaBort(Bokning entity)
+		public void TaBort(Bokning bokning)
 		{
-			throw new NotImplementedException();
+			bokningarLista.Remove(bokningarLista.SingleOrDefault(b => b.BokningsNummer == bokning.BokningsNummer));
 		}
 
-		public void Uppdatera(Bokning entity)
+		public void Uppdatera(Bokning bokning)
 		{
-			throw new NotImplementedException();
+			bokningarLista.Remove(bokningarLista.SingleOrDefault(b => b.BokningsNummer == bokning.BokningsNummer));
+			bokningarLista.Add(bokning);
 		}
 	}
 }
