@@ -13,17 +13,17 @@ namespace BusinessLayer
 			set { anställningsNummer = value; }
 		}
 
-		private string förNamn;
-		public string FörNamn
+		private string förnamn;
+		public string Förnamn
 		{
-			get { return förNamn; }
-			set { förNamn = value; }
+			get { return förnamn; }
+			set { förnamn = value; }
 		}
-		private string efterNamn;
-		public string EfterNamn
+		private string efternamn;
+		public string Efternamn
 		{
-			get { return efterNamn; }
-			set { efterNamn = value; }
+			get { return efternamn; }
+			set { efternamn = value; }
 		}
 
 		private string lösenord;
@@ -42,14 +42,14 @@ namespace BusinessLayer
 
 		public string ExpeditFulltNamn
 		{
-			get { return FörNamn + " " + EfterNamn; }
+			get { return Förnamn + " " + Efternamn; }
 		}
 
 		public Expedit(string anställningsnummer, string förnamn, string efternamn, string lösenord, string roll)
 		{
 			AnställningsNummer = anställningsnummer;
-			FörNamn = förnamn;
-			EfterNamn = efternamn;
+			Förnamn = förnamn;
+			Efternamn = efternamn;
 			Lösenord = lösenord;
 			Roll = roll;
 		}

@@ -12,7 +12,7 @@ namespace BusinessLayer.DataRepository
         {
             foreach (Medlem medlem in medlemmar)
             {
-                if (medlem.MedlemsNummer == id)
+                if (medlem.Medlemsnummer == id)
                 {
                     Medlem hittadMedlem = medlem;
                     return hittadMedlem;
@@ -37,12 +37,12 @@ namespace BusinessLayer.DataRepository
 
         public void TaBort(Medlem medlem)
         {
-            medlemmar.Remove(medlemmar.SingleOrDefault(m => m.MedlemsNummer == medlem.MedlemsNummer));
+            medlemmar.Remove(medlemmar.SingleOrDefault(m => m.Medlemsnummer == medlem.Medlemsnummer));
         }
 
         public void Uppdatera(Medlem medlem)
         {
-            medlemmar.Remove(medlemmar.SingleOrDefault(m => m.MedlemsNummer == medlem.MedlemsNummer));
+            medlemmar.Remove(medlemmar.SingleOrDefault(m => m.Medlemsnummer == medlem.Medlemsnummer));
             medlemmar.Add(medlem);
 
         }

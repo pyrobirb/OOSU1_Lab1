@@ -36,6 +36,7 @@
             this.LoggaInBtn = new System.Windows.Forms.Button();
             this.felLösenLabel = new System.Windows.Forms.Label();
             this.expediterComboBox = new System.Windows.Forms.ComboBox();
+            this.AvslutaBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // LösenordTextBox
@@ -47,10 +48,10 @@
             this.LösenordTextBox.TabIndex = 0;
             this.LösenordTextBox.Text = "klas123";
             // 
-            // AnvNamnTextBox
+            // AnvIDTextBox
             // 
             this.AnvIDTextBox.Location = new System.Drawing.Point(120, 66);
-            this.AnvIDTextBox.Name = "AnvNamnTextBox";
+            this.AnvIDTextBox.Name = "AnvIDTextBox";
             this.AnvIDTextBox.Size = new System.Drawing.Size(100, 20);
             this.AnvIDTextBox.TabIndex = 1;
             this.AnvIDTextBox.Text = "1";
@@ -110,11 +111,23 @@
             this.expediterComboBox.TabIndex = 7;
             this.expediterComboBox.SelectedIndexChanged += new System.EventHandler(this.expediterComboBox_SelectedIndexChanged);
             // 
+            // AvslutaBtn
+            // 
+            this.AvslutaBtn.Location = new System.Drawing.Point(205, 180);
+            this.AvslutaBtn.Name = "AvslutaBtn";
+            this.AvslutaBtn.Size = new System.Drawing.Size(75, 23);
+            this.AvslutaBtn.TabIndex = 8;
+            this.AvslutaBtn.Text = "Avsluta";
+            this.AvslutaBtn.UseVisualStyleBackColor = true;
+            this.AvslutaBtn.Click += new System.EventHandler(this.AvslutaBtn_Click);
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(291, 174);
+            this.ClientSize = new System.Drawing.Size(292, 215);
+            this.ControlBox = false;
+            this.Controls.Add(this.AvslutaBtn);
             this.Controls.Add(this.expediterComboBox);
             this.Controls.Add(this.felLösenLabel);
             this.Controls.Add(this.LoggaInBtn);
@@ -141,6 +154,7 @@
         private System.Windows.Forms.Button LoggaInBtn;
         private System.Windows.Forms.Label felLösenLabel;
         private System.Windows.Forms.ComboBox expediterComboBox;
+        private System.Windows.Forms.Button AvslutaBtn;
     }
 }
 

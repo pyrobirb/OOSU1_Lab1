@@ -28,17 +28,19 @@ namespace Presentationslager
             expediterComboBox.DataSource = Drm.HämtaAllaExpediter();
             expediterComboBox.DisplayMember = "ExpeditFulltNamn";
             expediterComboBox.ValueMember = "AnställningsNummer";
-
         }
 
         #region genereraobjekt
 
         public void GenereraObjekt()
         {
-            Expedit expedit = new Expedit("1", "Klas", "Göran", "klas123", "Bibliotekschef");
-            Expedit expedit1 = new Expedit("2", "Klara", "Göransson", "klara123", "Expedit");
-            Drm.LäggTillExpedit(expedit);
-            Drm.LäggTillExpedit(expedit1);
+            if (Drm.HämtaAllaExpediter().Count() < 1)
+            {
+                Expedit expedit = new Expedit("1", "Klas", "Göran", "klas123", "Bibliotekschef");
+                Expedit expedit1 = new Expedit("2", "Klara", "Göransson", "klara123", "Expedit");
+                Drm.LäggTillExpedit(expedit);
+                Drm.LäggTillExpedit(expedit1);
+            }
         }
 
         #endregion
@@ -55,7 +57,6 @@ namespace Presentationslager
                     {
                         return true;
                     }
-                   
                 }
                 return false;
             }
@@ -76,7 +77,7 @@ namespace Presentationslager
         {
             if (KontrolleraInloggning(AnvIDTextBox.Text, LösenordTextBox.Text))
             {
-                Meny meny = new Meny(Drm);
+                Meny meny = new Meny(Drm, AnvIDTextBox.Text);
                 meny.InloggadAnvändare(AnvIDTextBox.Text);
                 meny.Show();
                 this.Hide();
@@ -95,6 +96,9 @@ namespace Presentationslager
             LösenordTextBox.Text = valdExpedit.Lösenord;
         }
 
-
+        private void AvslutaBtn_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(1);
+        }
     }
 }

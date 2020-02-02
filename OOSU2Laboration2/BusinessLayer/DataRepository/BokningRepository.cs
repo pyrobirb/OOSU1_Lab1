@@ -9,7 +9,6 @@ namespace BusinessLayer.DataRepository
     {
 
 		List<Bokning> bokningarLista = new List<Bokning>();
-		
 
 		public Bokning HämtaMedID(string id)
 		{

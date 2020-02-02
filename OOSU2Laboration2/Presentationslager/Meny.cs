@@ -17,10 +17,11 @@ namespace Presentationslager
         
         string inloggadAnvändare { get; set; }
         
-        public Meny(DataRepositoryManager drm)
+        public Meny(DataRepositoryManager drm, string anvID)
         {
             InitializeComponent();
             Drm = drm;
+            inloggadAnvändare = anvID;
         }
 
         private void BokningBtn_Click(object sender, EventArgs e)
@@ -34,7 +35,7 @@ namespace Presentationslager
             }
             else
             {
-                Bokning nyBokning = new Bokning(Drm);
+                SkapaBokning nyBokning = new SkapaBokning(Drm, inloggadAnvändare);
                 nyBokning.Show();
                 this.Hide();
             }
@@ -50,7 +51,7 @@ namespace Presentationslager
             }
             else
             {
-                Bokning nyBBokning = new Bokning(Drm);
+                SkapaBokning nyBBokning = new SkapaBokning(Drm, inloggadAnvändare);
                 nyBBokning.Show();
                 this.Hide();
             }

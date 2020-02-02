@@ -9,11 +9,11 @@ namespace BusinessLayer
     {
 		List<Bokning> BokningsLista = new List<Bokning>();
 
-		private string medlemsNummer;
-		public string MedlemsNummer
+		private string medlemsnummer;
+		public string Medlemsnummer
 		{
-			get { return medlemsNummer; }
-			set { medlemsNummer = value; }
+			get { return medlemsnummer; }
+			set { medlemsnummer = value; }
 		}
 
 		private string förNamn;
@@ -50,7 +50,7 @@ namespace BusinessLayer
 
 		public Medlem(string medlemsnummer, string förnamn, string efternamn, string telefonnummer, string epost, List<Bokning> bokningsLista)
 		{
-			MedlemsNummer = medlemsnummer;
+			Medlemsnummer = medlemsnummer;
 			FörNamn = förnamn;
 			EfterNamn = efternamn;
 			Telefonnummer = telefonnummer;

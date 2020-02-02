@@ -20,7 +20,7 @@ namespace BusinessLayer
             return BoknRep.HämtaAlla();
         }
 
-        public Bokning GetBokningByID(string id)
+        public Bokning HämtaBokningMedID(string id)
         {
             return BoknRep.HämtaMedID(id);
         }
@@ -75,7 +75,7 @@ namespace BusinessLayer
             return ExpRep.HämtaAlla();
         }
 
-        public Expedit GetExpeditByID(string id)
+        public Expedit HämtaExpeditMedID(string id)
         {
             return ExpRep.HämtaMedID(id);
         }
@@ -103,7 +103,7 @@ namespace BusinessLayer
             return FakRep.HämtaAlla();
         }
 
-        public Faktura GetFakturaByID(string id)
+        public Faktura HämtaFakturaMedID(string id)
         {
             return FakRep.HämtaMedID(id);
         }
@@ -132,7 +132,7 @@ namespace BusinessLayer
             return MedRep.HämtaAlla();
         }
         
-        public Medlem GetMedlemByID(string id)
+        public Medlem HämtaMedlemMedID(string id)
         {
             return MedRep.HämtaMedID(id);
         }

@@ -6,10 +6,22 @@ namespace BusinessLayer
 {
     public class Bokning
     {
-		List<Bok> LånadeBöcker { get; set; }
+		private List<Faktura> fakturaLista;
+		public List<Faktura> FakturaLista
+		{
+			get { return fakturaLista; }
+			set { fakturaLista = value; }
+		}
+
 		Expedit Expedit { get; set; }
 		Medlem Medlem { get; set; }
-		List<Faktura> FakturaLista = new List<Faktura>();
+
+		private List<Bok> lånadeBöcker;
+		public List<Bok> LånadeBöcker
+		{
+			get { return lånadeBöcker; }
+			set { lånadeBöcker = value; }
+		}
 
 		private string bokningsNummer;
 		public string BokningsNummer
@@ -40,13 +52,13 @@ namespace BusinessLayer
 			set { återlämningsDatum = value; }
 		}
 
-		public Bokning(string bokningsnummer, DateTime startDatum, List<Bok> lånadeBöcker, Expedit expedit, Medlem medlem )
+		public Bokning(string bokningsnummer, DateTime startDatum, Expedit expedit, Medlem medlem, List<Bok> lånadeBöcker)
 		{
 			BokningsNummer = bokningsnummer;
 			StartDatum = startDatum;
-			LånadeBöcker = lånadeBöcker;
 			Expedit = expedit;
 			Medlem = medlem;
+			LånadeBöcker = lånadeBöcker;
 		}
 		
 	}

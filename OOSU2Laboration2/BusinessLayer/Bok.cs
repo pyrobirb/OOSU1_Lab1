@@ -6,7 +6,9 @@ namespace BusinessLayer
 {
     public class Bok
     {
-		
+
+		public List<Bokning> BokningsLista = new List<Bokning>();
+
 		private string ISBNnummer;
 		public string ISBNNummer
 		{
@@ -28,6 +30,8 @@ namespace BusinessLayer
 			set { författare = value; }
 		}
 
+
+		//ta bort?
 		private bool utlånad;
 		public bool Utlånad
 		{
@@ -44,16 +48,17 @@ namespace BusinessLayer
 
 		public string BokTitelFörfattare
 		{
-			get { return Författare + " - " + Titel; }
+			get { return ISBNNummer + " " + Författare + " - " + Titel; }
 		}
 
-		public Bok(string isbnnr, string titel, string författare, bool utlånad, int antalkopior)
+		public Bok(string isbnnr, string titel, string författare, bool utlånad, int antalkopior, List<Bokning> bokningslista)
 		{
 			ISBNNummer = isbnnr;
 			Titel = titel;
 			Författare = författare;
 			Utlånad = utlånad;
 			AntalKopior = antalkopior;
+			BokningsLista = bokningslista;
 		}
 		
 	}
