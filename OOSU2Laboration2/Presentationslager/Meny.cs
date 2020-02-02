@@ -7,21 +7,53 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BusinessLayer;
 
 namespace Presentationslager
 {
     public partial class Meny : Form
     {
-        public Meny()
+        DataRepositoryManager Drm { get; set; }
+        
+        string inloggadAnvändare { get; set; }
+        
+        public Meny(DataRepositoryManager drm)
         {
             InitializeComponent();
+            Drm = drm;
         }
 
         private void BokningBtn_Click(object sender, EventArgs e)
         {
-            Bokning bokn = new Bokning();
-            bokn.Show();
-            this.Hide();
+            Form bokning = Application.OpenForms["Bokning"];
+            if (bokning != null)
+            {
+                this.Hide();
+                bokning.Focus();
+                bokning.Show();
+            }
+            else
+            {
+                Bokning nyBokning = new Bokning(Drm);
+                nyBokning.Show();
+                this.Hide();
+            }
+        }
+        private void BorttagningBtn_Click(object sender, EventArgs e)
+        {
+            Form Bbokning = Application.OpenForms["BorttagningAvBokning"];
+            if (Bbokning != null)
+            {
+                this.Hide();
+                Bbokning.Focus();
+                Bbokning.Show();
+            }
+            else
+            {
+                Bokning nyBBokning = new Bokning(Drm);
+                nyBBokning.Show();
+                this.Hide();
+            }
         }
 
         private void tillbakaBtn_Click(object sender, EventArgs e)
@@ -30,16 +62,39 @@ namespace Presentationslager
         }
         public void TillbakaTillLogin()
         {
+            Login login = new Login(Drm);
+            login.Show();
             this.Hide();
-
-            foreach (Form form in Application.OpenForms)
-            {
-                if (form is Login)
-                {
-                    form.Show();
-                    break;
-                }
-            }
         }
+
+        public void InloggadAnvändare(string användarID)
+        {
+            inloggadAnvändare = användarID;
+        }
+
+        private void Meny_Load(object sender, EventArgs e)
+        {
+            inloggadAnvändareLabel.Text = HämtaInloggadExpedit();
+        }
+
+        public string HämtaInloggadExpedit()
+        {
+
+            List<Expedit> allaexpediter = (List<Expedit>)Drm.HämtaAllaExpediter();
+
+            var expedit =
+                (from exp in allaexpediter
+                where exp.AnställningsNummer == inloggadAnvändare
+                select exp.ExpeditFulltNamn).SingleOrDefault();
+
+            return expedit;
+        }
+
+        private void inloggadAnvändareLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 }

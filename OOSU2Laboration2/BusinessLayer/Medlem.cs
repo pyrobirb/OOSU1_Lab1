@@ -43,9 +43,9 @@ namespace BusinessLayer
 			set { epost = value; }
 		}
 
-		public string MedlemFullName()
+		public string MedlemFulltNamn
 		{
-			return FörNamn + " " + EfterNamn;
+			get { return FörNamn + " " + EfterNamn; }
 		}
 
 		public Medlem(string medlemsnummer, string förnamn, string efternamn, string telefonnummer, string epost, List<Bokning> bokningsLista)

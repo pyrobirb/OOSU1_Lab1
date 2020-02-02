@@ -40,9 +40,9 @@ namespace BusinessLayer
 			set { roll = value; }
 		}
 
-		public string ExpeditFullName()
+		public string ExpeditFulltNamn
 		{
-			return FörNamn + " " + EfterNamn;
+			get { return FörNamn + " " + EfterNamn; }
 		}
 
 		public Expedit(string anställningsnummer, string förnamn, string efternamn, string lösenord, string roll)

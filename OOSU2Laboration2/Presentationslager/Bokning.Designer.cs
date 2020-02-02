@@ -52,15 +52,16 @@
             // tillgängligaBöckerListBox
             // 
             this.tillgängligaBöckerListBox.FormattingEnabled = true;
-            this.tillgängligaBöckerListBox.Location = new System.Drawing.Point(22, 63);
+            this.tillgängligaBöckerListBox.Location = new System.Drawing.Point(22, 118);
             this.tillgängligaBöckerListBox.Name = "tillgängligaBöckerListBox";
-            this.tillgängligaBöckerListBox.Size = new System.Drawing.Size(183, 95);
+            this.tillgängligaBöckerListBox.Size = new System.Drawing.Size(407, 108);
             this.tillgängligaBöckerListBox.TabIndex = 1;
+            this.tillgängligaBöckerListBox.SelectedIndexChanged += new System.EventHandler(this.tillgängligaBöckerListBox_SelectedIndexChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(19, 47);
+            this.label1.Location = new System.Drawing.Point(19, 102);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(148, 13);
             this.label1.TabIndex = 2;
@@ -69,7 +70,7 @@
             // startDatumPicker
             // 
             this.startDatumPicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.startDatumPicker.Location = new System.Drawing.Point(229, 63);
+            this.startDatumPicker.Location = new System.Drawing.Point(22, 64);
             this.startDatumPicker.Name = "startDatumPicker";
             this.startDatumPicker.Size = new System.Drawing.Size(200, 20);
             this.startDatumPicker.TabIndex = 3;
@@ -77,7 +78,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(226, 47);
+            this.label2.Location = new System.Drawing.Point(19, 48);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(144, 13);
             this.label2.TabIndex = 4;
@@ -104,7 +105,7 @@
             // medlemComboBox
             // 
             this.medlemComboBox.FormattingEnabled = true;
-            this.medlemComboBox.Location = new System.Drawing.Point(229, 118);
+            this.medlemComboBox.Location = new System.Drawing.Point(22, 250);
             this.medlemComboBox.Name = "medlemComboBox";
             this.medlemComboBox.Size = new System.Drawing.Size(200, 21);
             this.medlemComboBox.TabIndex = 7;
@@ -112,17 +113,17 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(226, 102);
+            this.label4.Location = new System.Drawing.Point(19, 234);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(131, 13);
             this.label4.TabIndex = 8;
             this.label4.Text = "Välj medlem för bokningen";
             // 
-            // Meny
+            // Bokning
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(453, 396);
+            this.ClientSize = new System.Drawing.Size(459, 396);
             this.ControlBox = false;
             this.Controls.Add(this.label4);
             this.Controls.Add(this.medlemComboBox);
@@ -133,7 +134,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tillgängligaBöckerListBox);
             this.Controls.Add(this.tillbakaBtn);
-            this.Name = "Meny";
+            this.Name = "Bokning";
             this.Text = "Meny";
             this.Load += new System.EventHandler(this.Meny_Load);
             this.ResumeLayout(false);

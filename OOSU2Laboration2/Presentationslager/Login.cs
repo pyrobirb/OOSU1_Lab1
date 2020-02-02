@@ -14,19 +14,21 @@ namespace Presentationslager
     public partial class Login : Form
     {
 
-        DataRepositoryManager drm = new DataRepositoryManager();
-        public Login()
+        DataRepositoryManager Drm { get; set; }
+        public Login(DataRepositoryManager drm)
         {
             InitializeComponent();
+            Drm = drm;
             GenereraObjekt();
             UppdateraExpediter();
         }
 
         public void UppdateraExpediter()
         {
-            expediterComboBox.DataSource = drm.HämtaAllaExpediter();
-            expediterComboBox.DisplayMember = "FörNamn";
+            expediterComboBox.DataSource = Drm.HämtaAllaExpediter();
+            expediterComboBox.DisplayMember = "ExpeditFulltNamn";
             expediterComboBox.ValueMember = "AnställningsNummer";
+
         }
 
         #region genereraobjekt
@@ -35,15 +37,15 @@ namespace Presentationslager
         {
             Expedit expedit = new Expedit("1", "Klas", "Göran", "klas123", "Bibliotekschef");
             Expedit expedit1 = new Expedit("2", "Klara", "Göransson", "klara123", "Expedit");
-            drm.LäggTillExpedit(expedit);
-            drm.LäggTillExpedit(expedit1);
+            Drm.LäggTillExpedit(expedit);
+            Drm.LäggTillExpedit(expedit1);
         }
 
         #endregion
 
         public bool KontrolleraInloggning(string ID, string Lösenord)
         {
-            var expediter = drm.HämtaAllaExpediter();
+            var expediter = Drm.HämtaAllaExpediter();
 
             if ((ID != null) || (Lösenord != null))
             {
@@ -53,10 +55,7 @@ namespace Presentationslager
                     {
                         return true;
                     }
-                    //else
-                    //{
-                    //    return false;
-                    //}
+                   
                 }
                 return false;
             }
@@ -77,7 +76,8 @@ namespace Presentationslager
         {
             if (KontrolleraInloggning(AnvIDTextBox.Text, LösenordTextBox.Text))
             {
-                Meny meny = new Meny();
+                Meny meny = new Meny(Drm);
+                meny.InloggadAnvändare(AnvIDTextBox.Text);
                 meny.Show();
                 this.Hide();
             }

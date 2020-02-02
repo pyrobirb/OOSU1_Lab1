@@ -14,10 +14,11 @@ namespace Presentationslager
 {
     public partial class Bokning : Form
     {
-        DataRepositoryManager drm = new DataRepositoryManager();
-        public Bokning()
+        DataRepositoryManager Drm { get; set; }
+        public Bokning(DataRepositoryManager drm)
         {
             InitializeComponent();
+            Drm = drm;
             GenereraObjekt();
             UppdateraDatasources();
         }
@@ -29,8 +30,13 @@ namespace Presentationslager
 
         public void UppdateraDatasources()
         {
-            tillgängligaBöckerListBox.DataSource = drm.HämtaAllaBocker();
-            medlemComboBox.DataSource = drm.HämtaAllaMedlemmar();
+            tillgängligaBöckerListBox.DataSource = Drm.HämtaAllaBocker();
+            tillgängligaBöckerListBox.DisplayMember = "BokTitelFörfattare";
+            tillgängligaBöckerListBox.ValueMember = "ISBNNummer";
+
+            medlemComboBox.DataSource = Drm.HämtaAllaMedlemmar();
+            medlemComboBox.DisplayMember = "MedlemFulltNamn";
+            medlemComboBox.ValueMember = "MedlemsNummer";
         }
 
         #region genereraobjekt
@@ -49,7 +55,7 @@ namespace Presentationslager
 
             foreach (Medlem medlem in medlemmar)
             {
-                drm.LäggTillMedlem(medlem);
+                Drm.LäggTillMedlem(medlem);
             }
             
 
@@ -66,7 +72,7 @@ namespace Presentationslager
 
             foreach (Bok bok in böcker)
             {
-                drm.LäggTillBok(bok);
+                Drm.LäggTillBok(bok);
             }
 
         }
@@ -80,16 +86,16 @@ namespace Presentationslager
 
         public void TillbakaTillMeny()
         {
-            this.Hide();
+            
+                Meny meny = new Meny(Drm);
+                meny.Show();
+                this.Hide();
+            
+        }
 
-            foreach (Form form in Application.OpenForms)
-            {
-                if (form is Meny)
-                {
-                    form.Show();
-                    break;
-                }
-            }
+        private void tillgängligaBöckerListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
