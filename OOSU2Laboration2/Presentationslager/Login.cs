@@ -25,7 +25,7 @@ namespace Presentationslager
         public void UppdateraExpediter()
         {
             expediterComboBox.DataSource = drm.HämtaAllaExpediter();
-            expediterComboBox.DisplayMember = "ExpeditFullName";
+            expediterComboBox.DisplayMember = "FörNamn";
             expediterComboBox.ValueMember = "AnställningsNummer";
         }
 
@@ -33,8 +33,8 @@ namespace Presentationslager
 
         public void GenereraObjekt()
         {
-            Expedit expedit = new Expedit("1", "Klas", "Göran", "klas123", "Expedit");
-            Expedit expedit1 = new Expedit("2", "KLara", "Göransson", "klara123", "Expedit");
+            Expedit expedit = new Expedit("1", "Klas", "Göran", "klas123", "Bibliotekschef");
+            Expedit expedit1 = new Expedit("2", "Klara", "Göransson", "klara123", "Expedit");
             drm.LäggTillExpedit(expedit);
             drm.LäggTillExpedit(expedit1);
         }
@@ -53,10 +53,10 @@ namespace Presentationslager
                     {
                         return true;
                     }
-                    else
-                    {
-                        return false;
-                    }
+                    //else
+                    //{
+                    //    return false;
+                    //}
                 }
                 return false;
             }

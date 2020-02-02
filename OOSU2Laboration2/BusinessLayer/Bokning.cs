@@ -29,7 +29,7 @@ namespace BusinessLayer
 		private DateTime slutDatum;
 		public DateTime SlutDatum
 		{
-			get { return StartDatum.AddMonths(1); }
+			get { return StartDatum.AddDays(14); }
 			set { slutDatum = value; }
 		}
 

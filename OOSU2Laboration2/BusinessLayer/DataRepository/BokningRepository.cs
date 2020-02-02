@@ -7,8 +7,8 @@ namespace BusinessLayer.DataRepository
 {
     internal class BokningRepository : IRepository<Bokning>
     {
-		
-		List<Bokning> bokningarLista { get; set; }
+
+		List<Bokning> bokningarLista = new List<Bokning>();
 		
 
 		public Bokning HämtaMedID(string id)

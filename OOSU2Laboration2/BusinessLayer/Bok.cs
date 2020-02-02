@@ -42,6 +42,11 @@ namespace BusinessLayer
 			set { antalKopior = value; }
 		}
 
+		public string BokTitelFörfattare()
+		{
+			return Författare + " " + Titel;
+		}
+
 		public Bok(string isbnnr, string titel, string författare, bool utlånad, int antalkopior)
 		{
 			ISBNNummer = isbnnr;

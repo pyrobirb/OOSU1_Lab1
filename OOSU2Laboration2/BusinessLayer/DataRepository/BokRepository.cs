@@ -7,7 +7,7 @@ namespace BusinessLayer.DataRepository
 {
     internal class BokRepository : IRepository<Bok>
     {
-        List<Bok> bokLista { get; set; }
+        List<Bok> bokLista = new List<Bok>();
 
         public Bok HämtaMedID(string id)
         {

@@ -52,6 +52,12 @@
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Bokning.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bokning.Designer.cs">
+      <DependentUpon>Bokning.cs</DependentUpon>
+    </Compile>
     <Compile Include="Meny.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -62,6 +68,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bokning.resx">
+      <DependentUpon>Bokning.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Meny.resx">
       <DependentUpon>Meny.cs</DependentUpon>
