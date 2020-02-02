@@ -108,17 +108,17 @@ namespace BusinessLayer
             return FakRep.HämtaMedID(id);
         }
 
-        public void LäggTillExpedit(Faktura faktura)
+        public void LäggTillFaktura(Faktura faktura)
         {
             FakRep.LäggTill(faktura);
         }
 
-        public void TaBortExpedit(Faktura faktura)
+        public void TaBortFaktura(Faktura faktura)
         {
             FakRep.TaBort(faktura);
         }
 
-        public void UppdateraExpedit(Faktura faktura)
+        public void UppdateraFaktura(Faktura faktura)
         {
             FakRep.Uppdatera(faktura);
         }
@@ -137,17 +137,17 @@ namespace BusinessLayer
             return MedRep.HämtaMedID(id);
         }
 
-        public void LäggTillExpedit(Medlem medlem)
+        public void LäggTillMedlem(Medlem medlem)
         {
             MedRep.LäggTill(medlem);
         }
 
-        public void TaBortExpedit(Medlem medlem)
+        public void TaBortMedlem(Medlem medlem)
         {
             MedRep.TaBort(medlem);
         }
 
-        public void UppdateraExpedit(Medlem medlem)
+        public void UppdateraMedlem(Medlem medlem)
         {
             MedRep.Uppdatera(medlem);
         }

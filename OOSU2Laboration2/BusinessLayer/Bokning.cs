@@ -18,7 +18,7 @@ namespace BusinessLayer
 			set { bokningsNummer = value; }
 		}
 
-		//DateTime.Now.ToString("MM/dd/yyyy")
+		//DateTime.Now.ToString("dd/MM/yyyy")
 		private DateTime startDatum;
 		public DateTime StartDatum
 		{
@@ -29,7 +29,7 @@ namespace BusinessLayer
 		private DateTime slutDatum;
 		public DateTime SlutDatum
 		{
-			get { return slutDatum; }
+			get { return StartDatum.AddMonths(1); }
 			set { slutDatum = value; }
 		}
 

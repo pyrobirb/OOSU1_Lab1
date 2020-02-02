@@ -7,7 +7,7 @@ namespace BusinessLayer
 {
     public class Medlem
     {
-		List<Bokning> BokningsLista { get; set; }
+		List<Bokning> BokningsLista = new List<Bokning>();
 
 		private string medlemsNummer;
 		public string MedlemsNummer

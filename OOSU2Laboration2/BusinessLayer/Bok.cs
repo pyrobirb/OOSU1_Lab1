@@ -21,6 +21,13 @@ namespace BusinessLayer
 			set { titel = value; }
 		}
 
+		private string författare;
+		public string Författare
+		{
+			get { return författare; }
+			set { författare = value; }
+		}
+
 		private bool utlånad;
 		public bool Utlånad
 		{
@@ -35,10 +42,11 @@ namespace BusinessLayer
 			set { antalKopior = value; }
 		}
 
-		public Bok(string isbnnr, string titel, bool utlånad, int antalkopior)
+		public Bok(string isbnnr, string titel, string författare, bool utlånad, int antalkopior)
 		{
 			ISBNNummer = isbnnr;
 			Titel = titel;
+			Författare = författare;
 			Utlånad = utlånad;
 			AntalKopior = antalkopior;
 		}
