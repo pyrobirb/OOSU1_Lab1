@@ -135,20 +135,20 @@ namespace Presentationslager
             List<Bok> tillgängligaBöcker = new List<Bok>();
 
 
-            foreach (var bokning in Drm.HämtaAllaBokningar())
-            {
-                foreach (var bok in bokning.LånadeBöcker)
-                {
-                    if ((valtStartDatum > bokning.SlutDatum) && (valtStartDatum < bokning.StartDatum))
-                    {
-                        tillgängligaBöcker.Add(bok);
-                    }
-                }
-            }
+            //foreach (var bokning in Drm.HämtaAllaBokningar())
+            //{
+            //    foreach (var bok in bokning.LånadeBöcker)
+            //    {
+            //        if ((valtStartDatum > bokning.SlutDatum) && (valtStartDatum < bokning.StartDatum) && (bok.AntalKopior > 0))
+            //        {
+            //            tillgängligaBöcker.Add(bok);
+            //        }
+            //    }
+            //}
 
             foreach (Bok bok in Drm.HämtaAllaBocker())
             {
-                if (bok.BokningsLista == null)
+                if ((bok.BokningsLista == null) && (bok.AntalKopior > 0))
                 {
                     tillgängligaBöcker.Add(bok);
                 }
@@ -163,7 +163,7 @@ namespace Presentationslager
 
         private void bokaBtn_Click(object sender, EventArgs e)
         {
-
+            SparaBokning();
         }
 
 
@@ -178,16 +178,16 @@ namespace Presentationslager
             Bokning b = new Bokning(bokningsnummer, startDatum, expedit, medlem, valdaBöcker);
 
             Drm.LäggTillBokning(b);
-            //LäggTillBokningTillBok(valdaBöcker,b);
+            LäggTillBokningTillBok(valdaBöcker,b);
         }
 
-        //public void LäggTillBokningTillBok(List<Bok> böcker, Bokning bokning)
-        //{
-        //    foreach (Bok bok in böcker)
-        //    {
-        //        bok.BokningsLista.Add(bokning);
-        //    }
-        //}
+        public void LäggTillBokningTillBok(List<Bok> böcker, Bokning bokning)
+        {
+            foreach (Bok bok in böcker)
+            {
+                bok.BokningsLista.Add(bokning);
+            }
+        }
 
     }
 }

@@ -22,6 +22,12 @@ namespace BusinessLayer
 			get { return lånadeBöcker; }
 			set { lånadeBöcker = value; }
 		}
+		private List<Bok> återlämnadeBöcker;
+		public List<Bok> ÅterlämnadeBöcker
+		{
+			get { return återlämnadeBöcker; }
+			set { återlämnadeBöcker = value; }
+		}
 
 		private string bokningsNummer;
 		public string BokningsNummer
