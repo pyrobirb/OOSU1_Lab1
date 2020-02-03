@@ -47,7 +47,7 @@ namespace BusinessLayer
 		private DateTime slutDatum;
 		public DateTime SlutDatum
 		{
-			get { return StartDatum.AddDays(14); }
+			get { return slutDatum; }
 			set { slutDatum = value; }
 		}
 
@@ -58,10 +58,11 @@ namespace BusinessLayer
 			set { återlämningsDatum = value; }
 		}
 
-		public Bokning(string bokningsnummer, DateTime startDatum, Expedit expedit, Medlem medlem, List<Bok> lånadeBöcker)
+		public Bokning(string bokningsnummer, DateTime startDatum, DateTime slutDatum, Expedit expedit, Medlem medlem, List<Bok> lånadeBöcker)
 		{
 			BokningsNummer = bokningsnummer;
 			StartDatum = startDatum;
+			SlutDatum = slutDatum;
 			Expedit = expedit;
 			Medlem = medlem;
 			LånadeBöcker = lånadeBöcker;

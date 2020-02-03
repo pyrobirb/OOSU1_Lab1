@@ -86,13 +86,14 @@ namespace Presentationslager
 
 
                 //Böcker
-                Bok b1 = new Bok("1788478126", "C# 8.0 and .NET Core 3.0", "Mark J. Price", false, 2, null);
-                Bok b2 = new Bok("0134494164", "Clean Architecture", "Robert C. Martin", false, 3, null); ;
-                Bok b3 = new Bok("9780132350884", "Clean Code", "Robert C. Martin", false, 2, null);
-                Bok b4 = new Bok("0137081073", "The Clean Coder", "Robert C. Martin", false, 1, null);
-                Bok b5 = new Bok("1844132390", "Man's Search For Meaning", "Viktor E. Frankl", false, 4, null);
-                Bok b6 = new Bok("9780722532935", "The Alchemist", "Paul Coelho", false, 2, null);
-                Bok b7 = new Bok("9780316029186", "The Last Wish", "Andrzej Sapkowski", false, 1, null);
+                List<Bokning> tomBokningsLista = new List<Bokning>();
+                Bok b1 = new Bok("1788478126", "C# 8.0 and .NET Core 3.0", "Mark J. Price", false, 2, tomBokningsLista);
+                Bok b2 = new Bok("0134494164", "Clean Architecture", "Robert C. Martin", false, 3, tomBokningsLista); ;
+                Bok b3 = new Bok("9780132350884", "Clean Code", "Robert C. Martin", false, 2, tomBokningsLista);
+                Bok b4 = new Bok("0137081073", "The Clean Coder", "Robert C. Martin", false, 1, tomBokningsLista);
+                Bok b5 = new Bok("1844132390", "Man's Search For Meaning", "Viktor E. Frankl", false, 4, tomBokningsLista);
+                Bok b6 = new Bok("9780722532935", "The Alchemist", "Paul Coelho", false, 2, tomBokningsLista);
+                Bok b7 = new Bok("9780316029186", "The Last Wish", "Andrzej Sapkowski", false, 1, tomBokningsLista);
 
                 IEnumerable<Bok> böcker = new List<Bok>() { b1, b2, b3, b4, b5, b6, b7 };
 
@@ -125,6 +126,7 @@ namespace Presentationslager
 
         private void startDatumPicker_ValueChanged(object sender, EventArgs e)
         {
+            tillgängligaBöckerListBox.DataSource = null;
             tillgängligaBöckerListBox.DataSource = GivenEttDatum_ReturneraEnListaMedTillgängligaBöcker(startDatumPicker.Value);
             tillgängligaBöckerListBox.DisplayMember = "BokTitelFörfattare";
             återlämningsDatumLabel.Text = startDatumPicker.Value.AddDays(14).ToString("dd/MMMM/yyyy");
@@ -132,29 +134,64 @@ namespace Presentationslager
 
         public List<Bok> GivenEttDatum_ReturneraEnListaMedTillgängligaBöcker(DateTime valtStartDatum)
         {
-            List<Bok> tillgängligaBöcker = new List<Bok>();
+            List<Bok> tillgängligaBöcker = (List<Bok>)Drm.HämtaAllaBocker();
+            List<Bok> uppbokadeBöcker = new List<Bok>();
+            List<Bokning> allaBokningar = (List<Bokning>)Drm.HämtaAllaBokningar();
+
+            DateTime valtSlutDatum = valtStartDatum.AddDays(14);
+
+            List<Bok> nyaTillgängligaBöcker = new List<Bok>();
 
 
-            //foreach (var bokning in Drm.HämtaAllaBokningar())
-            //{
-            //    foreach (var bok in bokning.LånadeBöcker)
-            //    {
-            //        if ((valtStartDatum > bokning.SlutDatum) && (valtStartDatum < bokning.StartDatum) && (bok.AntalKopior > 0))
-            //        {
-            //            tillgängligaBöcker.Add(bok);
-            //        }
-            //    }
-            //}
-
-            foreach (Bok bok in Drm.HämtaAllaBocker())
+            if (Drm.HämtaAllaBokningar().Any())
             {
-                if ((bok.BokningsLista == null) && (bok.AntalKopior > 0))
+
+
+                foreach (Bok bok in tillgängligaBöcker)
                 {
-                    tillgängligaBöcker.Add(bok);
+
+                    foreach (Bokning bokning in allaBokningar)
+                    {
+                        foreach (Bok lånadBok in bokning.LånadeBöcker)
+                        {
+                            if (!(((bokning.SlutDatum < valtStartDatum) && (bokning.StartDatum < valtStartDatum)) || ((bokning.StartDatum > valtSlutDatum && bokning.SlutDatum > valtSlutDatum))))
+                            {
+                                uppbokadeBöcker.Add(lånadBok);
+                            }
+                        }
+
+                    }
+                }
+
+                tillgängligaBöcker.RemoveAll(bok => bok.BokID == ((List<Bok>)uppbokadeBöcker).)
+
+
+                foreach (Bok bok in tillgängligaBöcker)
+                {
+                    foreach (Bok uppbokadBok in uppbokadeBöcker)
+                    {
+                        if (bok == uppbokadBok)
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            nyaTillgängligaBöcker.Add(bok);
+                        }
+                    }
                 }
             }
-            return tillgängligaBöcker;
+            else
+            {
+                nyaTillgängligaBöcker = (List<Bok>)Drm.HämtaAllaBocker();
+
+            }
+
+
+
+            return nyaTillgängligaBöcker;
         }
+
 
         private void medlemComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -171,14 +208,24 @@ namespace Presentationslager
         {
             string bokningsnummer = (Drm.HämtaAllaBokningar().Count() + 1).ToString();
             var startDatum = startDatumPicker.Value;
+            var slutDatum = startDatum.AddDays(14);
             var expedit = Drm.HämtaExpeditMedID(inloggadAnvändare);
             var medlem = (Medlem)medlemComboBox.SelectedItem;
-            List<Bok> valdaBöcker = (List<Bok>)tillgängligaBöckerListBox.SelectedItems.Cast<Bok>();
 
-            Bokning b = new Bokning(bokningsnummer, startDatum, expedit, medlem, valdaBöcker);
+            List<Bok> valdaBöcker = new List<Bok>();
+
+            foreach (Bok bok in tillgängligaBöckerListBox.SelectedItems)
+            {
+
+                valdaBöcker.Add(bok);
+            }
+
+
+
+            Bokning b = new Bokning(bokningsnummer, startDatum, slutDatum, expedit, medlem, valdaBöcker);
 
             Drm.LäggTillBokning(b);
-            LäggTillBokningTillBok(valdaBöcker,b);
+            LäggTillBokningTillBok(valdaBöcker, b);
         }
 
         public void LäggTillBokningTillBok(List<Bok> böcker, Bokning bokning)

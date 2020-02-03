@@ -39,11 +39,11 @@ namespace BusinessLayer
 			set { utlånad = value; }
 		}
 
-		private int antalKopior;
-		public int AntalKopior
+		private int bokID;
+		public int BokID
 		{
-			get { return antalKopior; }
-			set { antalKopior = value; }
+			get { return bokID; }
+			set { bokID = value; }
 		}
 
 		public string BokTitelFörfattare
@@ -51,13 +51,13 @@ namespace BusinessLayer
 			get { return ISBNNummer + " " + Författare + " - " + Titel; }
 		}
 
-		public Bok(string isbnnr, string titel, string författare, bool utlånad, int antalkopior, List<Bokning> bokningslista)
+		public Bok(string isbnnr, string titel, string författare, bool utlånad, int bokID, List<Bokning> bokningslista)
 		{
 			ISBNNummer = isbnnr;
 			Titel = titel;
 			Författare = författare;
 			Utlånad = utlånad;
-			AntalKopior = antalkopior;
+			BokID = bokID;
 			BokningsLista = bokningslista;
 		}
 		
