@@ -59,12 +59,13 @@
             // 
             // BorttagningBtn
             // 
+            this.BorttagningBtn.BackColor = System.Drawing.SystemColors.Window;
             this.BorttagningBtn.Location = new System.Drawing.Point(50, 117);
             this.BorttagningBtn.Name = "BorttagningBtn";
             this.BorttagningBtn.Size = new System.Drawing.Size(200, 39);
             this.BorttagningBtn.TabIndex = 4;
             this.BorttagningBtn.Text = "Borttagning av Bokning";
-            this.BorttagningBtn.UseVisualStyleBackColor = true;
+            this.BorttagningBtn.UseVisualStyleBackColor = false;
             this.BorttagningBtn.Click += new System.EventHandler(this.BorttagningBtn_Click);
             // 
             // UtlämningBtn
@@ -84,6 +85,7 @@
             this.återlämningBtn.TabIndex = 6;
             this.återlämningBtn.Text = "Återlämning av böcker";
             this.återlämningBtn.UseVisualStyleBackColor = true;
+            this.återlämningBtn.Click += new System.EventHandler(this.återlämningBtn_Click);
             // 
             // tillbakaBtn
             // 

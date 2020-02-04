@@ -163,22 +163,12 @@ namespace Presentationslager
 
 
                 IEnumerable<Bok> båda = tillgängligaBöcker.Except(uppbokadeBöcker).ToList();
+
+
+
                 
 
-
-                //foreach (var Bok in böckerAttTaBort)
-                //{
-                //    foreach (Bok bok in tillgängligaBöcker)
-                //    {
-                //        if (Bok == bok)
-                //        {
-                //            tillgängligaBöcker.Remove(bok);
-                //            break;
-                //        }
-                //    }
-                //}
-
-                //nyaTillgängligaBöcker = tillgängligaBöcker;
+                nyaTillgängligaBöcker = (List<Bok>)båda.ToList();
 
 
 

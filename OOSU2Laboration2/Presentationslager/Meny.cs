@@ -57,6 +57,24 @@ namespace Presentationslager
             }
         }
 
+
+        private void återlämningBtn_Click(object sender, EventArgs e)
+        {
+            Form återL = Application.OpenForms["ÅterlämningAvBöcker"];
+            if (återL != null)
+            {
+                this.Hide();
+                återL.Focus();
+                återL.Show();
+            }
+            else
+            {
+                ÅterlämningAvBöcker nyåterL = new ÅterlämningAvBöcker(Drm, inloggadAnvändare);
+                nyåterL.Show();
+                this.Hide();
+            }
+        }
+
         private void tillbakaBtn_Click(object sender, EventArgs e)
         {
             TillbakaTillLogin();
