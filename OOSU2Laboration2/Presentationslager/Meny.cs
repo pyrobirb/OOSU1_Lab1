@@ -66,6 +66,7 @@ namespace Presentationslager
                 this.Hide();
                 återL.Focus();
                 återL.Show();
+                
             }
             else
             {

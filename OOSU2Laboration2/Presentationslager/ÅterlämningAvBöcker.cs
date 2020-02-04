@@ -21,27 +21,27 @@ namespace Presentationslager
             InitializeComponent();
             Drm = drm;
             inloggadAnvändare = anvID;
-            UppdateraBokingsLista();
+            UppdateraBokningsLista();
         }
 
-        public void UppdateraBokingsLista()
+        public void UppdateraBokningsLista()
         {
-            allaBokningarcomboBox.DataSource = Drm.HämtaAllaBokningar();
+            allaBokningarcomboBox.DataSource = null;
+            var allabokningar = Drm.HämtaAllaBokningar();
+            allaBokningarcomboBox.DataSource = allabokningar;
             allaBokningarcomboBox.DisplayMember = "BokningsNummer";
             allaBokningarcomboBox.ValueMember = "BokningsNummer";
         }
         private void allaBokningarcomboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (allaBokningarcomboBox.SelectedItem != null)
+            {
+                UppdateraListBoxar();
+                UppdateraFakturaComboBox();
+            }
 
-            allaBöckerPåBoknListBox.DataSource = ReturneraBöckerPåBokning((Bokning)allaBokningarcomboBox.SelectedItem);
-            allaBöckerPåBoknListBox.DisplayMember = "BokTitelFörfattare";
-            UppdateraFakturaComboBox();
         }
 
-        public List<Bok> ReturneraBöckerPåBokning(Bokning b)
-        {
-            return b.LånadeBöcker;
-        }
         private void ÅterlämningAvBöcker_Load(object sender, EventArgs e)
         {
 
@@ -71,7 +71,18 @@ namespace Presentationslager
             }
 
             //faktura
-            string fakturaNummer = valdBokning.BokningsNummer + 1000;
+            int fakturaID;
+            if (valdBokning.FakturaLista == null)
+            {
+                fakturaID = 0;
+            }
+            else
+            {
+                fakturaID = valdBokning.FakturaLista.Count();
+            }
+
+
+            string fakturaNummer = valdBokning.BokningsNummer + fakturaID.ToString();
 
             var nyaTotalPriset = BeräknaTotalPris(valdaBöcker, återlämningsDatum, valdBokning);
 
@@ -101,16 +112,31 @@ namespace Presentationslager
 
         public void UppdateraListBoxar()
         {
-            allaBöckerPåBoknListBox.DataSource = null;
-            allaBöckerPåBoknListBox.DataSource = ((Bokning)allaBokningarcomboBox.SelectedItem).LånadeBöcker;
-            fakturaÅterlämnadeböckerListBox.DataSource = null;
-            fakturaÅterlämnadeböckerListBox.DataSource = ((Faktura)FakturorComboBox.SelectedItem).faktureradeBöcker;
+            if (allaBokningarcomboBox.SelectedItem != null)
+            {
+                allaBöckerPåBoknListBox.DataSource = null;
+                allaBöckerPåBoknListBox.DataSource = ((Bokning)allaBokningarcomboBox.SelectedItem).LånadeBöcker;
+                allaBöckerPåBoknListBox.DisplayMember = "BokTitelFörfattare";
+
+                if (((Faktura)FakturorComboBox.SelectedItem) != null)
+                {
+                    fakturaÅterlämnadeböckerListBox.DataSource = null;
+                    fakturaÅterlämnadeböckerListBox.DataSource = ((Faktura)FakturorComboBox.SelectedItem).faktureradeBöcker;
+                    fakturaÅterlämnadeböckerListBox.DisplayMember = "BokTitelFörfattare";
+                }
+
+            }
+
+
 
         }
-        public void UppdateraFakturaComboBox() 
+        public void UppdateraFakturaComboBox()
         {
-            FakturorComboBox.DataSource = ((Bokning)allaBokningarcomboBox.SelectedItem).FakturaLista;
-            FakturorComboBox.DisplayMember = "FakturaNummer";
+            if (allaBokningarcomboBox.SelectedItem != null)
+            {
+                FakturorComboBox.DataSource = ((Bokning)allaBokningarcomboBox.SelectedItem).FakturaLista;
+                FakturorComboBox.DisplayMember = "FakturaNummer";
+            }
         }
 
 
@@ -154,10 +180,20 @@ namespace Presentationslager
             else
             {
 
-            fakturaNummerlabel.Text = ((Faktura)FakturorComboBox.SelectedItem).FakturaNummer;
-            fakturaTotalPrislabel.Text = (((Faktura)FakturorComboBox.SelectedItem).Totalpris.ToString()) + " " + "kr";
-            fakturaÅterlämnadeböckerListBox.DataSource = ((Bokning)allaBokningarcomboBox.SelectedItem).ÅterlämnadeBöcker;
+                fakturaNummerlabel.Text = ((Faktura)FakturorComboBox.SelectedItem).FakturaNummer;
+                fakturaTotalPrislabel.Text = (((Faktura)FakturorComboBox.SelectedItem).Totalpris.ToString()) + " " + "kr";
+                fakturaÅterlämnadeböckerListBox.DataSource = ((Bokning)allaBokningarcomboBox.SelectedItem).ÅterlämnadeBöcker;
             }
+        }
+
+        private void refreshBtn_Click(object sender, EventArgs e)
+        {
+            UppdateraBokningsLista();
+        }
+
+        private void fakturaÅterlämnadeböckerListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

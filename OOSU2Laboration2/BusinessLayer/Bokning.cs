@@ -13,12 +13,9 @@ namespace BusinessLayer
 		Expedit Expedit { get; set; }
 		Medlem Medlem { get; set; }
 
-		private List<Bok> lånadeBöcker;
-		public List<Bok> LånadeBöcker
-		{
-			get { return lånadeBöcker; }
-			set { lånadeBöcker = value; }
-		}
+
+		public List<Bok> LånadeBöcker = new List<Bok>();
+		
 		public List<Bok> ÅterlämnadeBöcker = new List<Bok>();
 		
 

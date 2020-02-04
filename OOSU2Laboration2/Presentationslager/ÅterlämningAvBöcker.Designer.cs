@@ -41,6 +41,7 @@
             this.fakturaTotalPrislabel = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.fakturaÅterlämnadeböckerListBox = new System.Windows.Forms.ListBox();
+            this.refreshBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // allaBöckerPåBoknListBox
@@ -161,6 +162,17 @@
             this.fakturaÅterlämnadeböckerListBox.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this.fakturaÅterlämnadeböckerListBox.Size = new System.Drawing.Size(218, 95);
             this.fakturaÅterlämnadeböckerListBox.TabIndex = 13;
+            this.fakturaÅterlämnadeböckerListBox.SelectedIndexChanged += new System.EventHandler(this.fakturaÅterlämnadeböckerListBox_SelectedIndexChanged);
+            // 
+            // refreshBtn
+            // 
+            this.refreshBtn.Location = new System.Drawing.Point(137, 25);
+            this.refreshBtn.Name = "refreshBtn";
+            this.refreshBtn.Size = new System.Drawing.Size(75, 23);
+            this.refreshBtn.TabIndex = 14;
+            this.refreshBtn.Text = "Refresh";
+            this.refreshBtn.UseVisualStyleBackColor = true;
+            this.refreshBtn.Click += new System.EventHandler(this.refreshBtn_Click);
             // 
             // ÅterlämningAvBöcker
             // 
@@ -168,6 +180,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(534, 305);
             this.ControlBox = false;
+            this.Controls.Add(this.refreshBtn);
             this.Controls.Add(this.fakturaÅterlämnadeböckerListBox);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.fakturaTotalPrislabel);
@@ -203,5 +216,6 @@
         private System.Windows.Forms.Label fakturaTotalPrislabel;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ListBox fakturaÅterlämnadeböckerListBox;
+        private System.Windows.Forms.Button refreshBtn;
     }
 }
