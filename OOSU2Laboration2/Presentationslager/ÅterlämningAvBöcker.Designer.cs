@@ -31,7 +31,7 @@
             this.allaBöckerPåBoknListBox = new System.Windows.Forms.ListBox();
             this.allaBokningarcomboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.återlämningBtn = new System.Windows.Forms.Button();
             this.tillbakaBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -62,14 +62,15 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Välj bokningsnummer:";
             // 
-            // button2
+            // återlämningBtn
             // 
-            this.button2.Location = new System.Drawing.Point(12, 217);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(251, 34);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Återlämna markerade böcker";
-            this.button2.UseVisualStyleBackColor = true;
+            this.återlämningBtn.Location = new System.Drawing.Point(12, 217);
+            this.återlämningBtn.Name = "återlämningBtn";
+            this.återlämningBtn.Size = new System.Drawing.Size(251, 34);
+            this.återlämningBtn.TabIndex = 4;
+            this.återlämningBtn.Text = "Återlämna markerade böcker";
+            this.återlämningBtn.UseVisualStyleBackColor = true;
+            this.återlämningBtn.Click += new System.EventHandler(this.återlämningBtn_Click);
             // 
             // tillbakaBtn
             // 
@@ -88,7 +89,7 @@
             this.ClientSize = new System.Drawing.Size(275, 305);
             this.ControlBox = false;
             this.Controls.Add(this.tillbakaBtn);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.återlämningBtn);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.allaBokningarcomboBox);
             this.Controls.Add(this.allaBöckerPåBoknListBox);
@@ -104,7 +105,7 @@
         private System.Windows.Forms.ListBox allaBöckerPåBoknListBox;
         private System.Windows.Forms.ComboBox allaBokningarcomboBox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button återlämningBtn;
         private System.Windows.Forms.Button tillbakaBtn;
     }
 }

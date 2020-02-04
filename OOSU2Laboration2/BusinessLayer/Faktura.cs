@@ -16,8 +16,8 @@ namespace BusinessLayer
 			set { fakturaNummer = value; }
 		}
 
-		private string totalpris;
-		public string Totalpris
+		private int totalpris;
+		public int Totalpris
 		{
 			get { return totalpris; }
 			set { totalpris = value; }
@@ -36,7 +36,7 @@ namespace BusinessLayer
 			get { return förfallodatum; }
 			set { förfallodatum = value; }
 		}
-		public Faktura(string fakturanummer, string totalpris, DateTime startDatum, DateTime förfallodatum, Bokning bokning)
+		public Faktura(string fakturanummer, int totalpris, DateTime startDatum, DateTime förfallodatum, Bokning bokning)
 		{
 			FakturaNummer = fakturanummer;
 			Totalpris = totalpris;

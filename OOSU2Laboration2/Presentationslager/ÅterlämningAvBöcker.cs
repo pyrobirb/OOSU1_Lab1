@@ -56,5 +56,47 @@ namespace Presentationslager
             meny.Show();
             this.Hide();
         }
+
+        private void återlämningBtn_Click(object sender, EventArgs e)
+        {
+            var valdBokning = (Bokning)allaBokningarcomboBox.SelectedItem;
+            List<Bok> valdaBöcker = new List<Bok>();
+            var återlämningsDatum = DateTime.Now;
+
+
+            foreach (Bok bok in allaBöckerPåBoknListBox.Items)
+            {
+                valdaBöcker.Add(bok);
+            }
+
+            string fakturaNummer = valdBokning.BokningsNummer + 1000;
+
+            var nyaTotalPriset = BeräknaTotalPris(valdaBöcker, återlämningsDatum, valdBokning);
+
+            var förfalloDatum = återlämningsDatum.AddDays(30);
+            Faktura f = new Faktura(fakturaNummer,nyaTotalPriset, återlämningsDatum, förfalloDatum, valdBokning);
+
+            Drm.LäggTillFaktura(f);
+            List<Faktura> fList = new List<Faktura>();
+            fList.Add(f);
+            valdBokning.FakturaLista = fList;
+
+        }
+
+        public int BeräknaTotalPris(List<Bok> böcker, DateTime återlämningsDatum, Bokning bokning ) 
+        {
+            
+            foreach (Bok bok in böcker)
+            {
+                if (återlämningsDatum > bokning.SlutDatum)
+                {
+                    int TotalPris = Convert.ToInt32(((återlämningsDatum - bokning.SlutDatum).TotalDays)) * 10;
+                    return TotalPris;
+                        
+                }
+            }
+            return 0;
+        }
+
     }
 }

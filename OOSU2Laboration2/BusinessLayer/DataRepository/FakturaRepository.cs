@@ -7,7 +7,7 @@ namespace BusinessLayer.DataRepository
 {
     internal class FakturaRepository : IRepository<Faktura>
     {
-        List<Faktura> fakturorLista { get; set; }
+        List<Faktura> fakturorLista = new List<Faktura>();
         public Faktura HämtaMedID(string id)
         {
             foreach (Faktura faktura in fakturorLista)

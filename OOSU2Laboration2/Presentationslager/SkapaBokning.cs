@@ -210,7 +210,6 @@ namespace Presentationslager
 
             foreach (Bok bok in tillgängligaBöckerListBox.SelectedItems)
             {
-
                 valdaBöcker.Add(bok);
             }
 
