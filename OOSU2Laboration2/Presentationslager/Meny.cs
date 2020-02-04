@@ -42,19 +42,7 @@ namespace Presentationslager
         }
         private void BorttagningBtn_Click(object sender, EventArgs e)
         {
-            Form Bbokning = Application.OpenForms["BorttagningAvBokning"];
-            if (Bbokning != null)
-            {
-                this.Hide();
-                Bbokning.Focus();
-                Bbokning.Show();
-            }
-            else
-            {
-                SkapaBokning nyBBokning = new SkapaBokning(Drm, inloggadAnvändare);
-                nyBBokning.Show();
-                this.Hide();
-            }
+            
         }
 
 
@@ -115,6 +103,9 @@ namespace Presentationslager
 
         }
 
-        
+        private void UtlämningBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
