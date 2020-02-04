@@ -37,7 +37,7 @@ namespace Presentationslager
             if (allaBokningarcomboBox.SelectedItem != null)
             {
                 UppdateraListBoxar();
-                //UppdateraFakturaComboBox();
+               
             }
 
         }

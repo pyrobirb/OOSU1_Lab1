@@ -31,14 +31,6 @@ namespace BusinessLayer
 		}
 
 
-		//ta bort?
-		private bool utlånad;
-		public bool Utlånad
-		{
-			get { return utlånad; }
-			set { utlånad = value; }
-		}
-
 		private int bokID;
 		public int BokID
 		{
@@ -51,12 +43,11 @@ namespace BusinessLayer
 			get { return ISBNNummer + " " + Författare + " - " + Titel; }
 		}
 
-		public Bok(string isbnnr, string titel, string författare, bool utlånad, int bokID, List<Bokning> bokningslista)
+		public Bok(string isbnnr, string titel, string författare, int bokID, List<Bokning> bokningslista)
 		{
 			ISBNNummer = isbnnr;
 			Titel = titel;
 			Författare = författare;
-			Utlånad = utlånad;
 			BokID = bokID;
 			BokningsLista = bokningslista;
 		}

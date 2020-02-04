@@ -87,14 +87,14 @@ namespace Presentationslager
 
                 //Böcker
                 List<Bokning> tomBokningsLista = new List<Bokning>();
-                Bok b1 = new Bok("1788478126", "C# 8.0 and .NET Core 3.0", "Mark J. Price", false, 1, tomBokningsLista);
-                Bok b2 = new Bok("0134494164", "Clean Architecture", "Robert C. Martin", false, 2, tomBokningsLista); ;
-                Bok b3 = new Bok("9780132350884", "Clean Code", "Robert C. Martin", false, 3, tomBokningsLista);
-                Bok b4 = new Bok("0137081073", "The Clean Coder", "Robert C. Martin", false, 4, tomBokningsLista);
-                Bok b5 = new Bok("1844132390", "Man's Search For Meaning", "Viktor E. Frankl", false, 5, tomBokningsLista);
-                Bok b6 = new Bok("9780722532935", "The Alchemist", "Paul Coelho", false, 6, tomBokningsLista);
-                Bok b7 = new Bok("9780316029186", "The Last Wish", "Andrzej Sapkowski", false, 7, tomBokningsLista);
-                Bok b8 = new Bok("9780316029186", "The Last Wish", "Andrzej Sapkowski", false, 8, tomBokningsLista);
+                Bok b1 = new Bok("1788478126", "C# 8.0 and .NET Core 3.0", "Mark J. Price", 1, tomBokningsLista);
+                Bok b2 = new Bok("0134494164", "Clean Architecture", "Robert C. Martin", 2, tomBokningsLista); ;
+                Bok b3 = new Bok("9780132350884", "Clean Code", "Robert C. Martin", 3, tomBokningsLista);
+                Bok b4 = new Bok("0137081073", "The Clean Coder", "Robert C. Martin", 4, tomBokningsLista);
+                Bok b5 = new Bok("1844132390", "Man's Search For Meaning", "Viktor E. Frankl", 5, tomBokningsLista);
+                Bok b6 = new Bok("9780722532935", "The Alchemist", "Paul Coelho", 6, tomBokningsLista);
+                Bok b7 = new Bok("9780316029186", "The Last Wish", "Andrzej Sapkowski", 7, tomBokningsLista);
+                Bok b8 = new Bok("9780316029186", "The Last Wish", "Andrzej Sapkowski", 8, tomBokningsLista);
 
                 IEnumerable<Bok> böcker = new List<Bok>() { b1, b2, b3, b4, b5, b6, b7, b8 };
 
