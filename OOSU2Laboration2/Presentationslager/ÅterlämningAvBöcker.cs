@@ -69,6 +69,7 @@ namespace Presentationslager
                 valdaBöcker.Add(bok);
             }
 
+            //faktura
             string fakturaNummer = valdBokning.BokningsNummer + 1000;
 
             var nyaTotalPriset = BeräknaTotalPris(valdaBöcker, återlämningsDatum, valdBokning);
@@ -76,12 +77,38 @@ namespace Presentationslager
             var förfalloDatum = återlämningsDatum.AddDays(30);
             Faktura f = new Faktura(fakturaNummer,nyaTotalPriset, återlämningsDatum, förfalloDatum, valdBokning);
 
-            Drm.LäggTillFaktura(f);
-            List<Faktura> fList = new List<Faktura>();
-            fList.Add(f);
-            valdBokning.FakturaLista = fList;
+            Drm.LäggTillFaktura(f); 
+            
+            if (valdBokning.FakturaLista == null || valdBokning.FakturaLista.Count() == 0)
+            {
+                List<Faktura> fList = new List<Faktura>();
+                fList.Add(f);
+                valdBokning.FakturaLista = fList; 
+            }
+            else
+            {
+                valdBokning.FakturaLista.Add(f);
+            }
+
+            //Boklistor
+            UppdateraBoklistor(valdaBöcker, valdaBöcker, valdBokning);
+
+            
+
+
 
         }
+
+
+        public void UppdateraBoklistor(List<Bok> återlämnadeBöcker, List<Bok> lånadeBöcker, Bokning valdBokning)
+        {
+
+
+
+
+
+        }
+
 
         public int BeräknaTotalPris(List<Bok> böcker, DateTime återlämningsDatum, Bokning bokning ) 
         {
