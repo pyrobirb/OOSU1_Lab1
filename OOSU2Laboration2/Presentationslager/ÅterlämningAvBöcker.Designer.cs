@@ -159,7 +159,6 @@
             this.fakturaÅterlämnadeböckerListBox.FormattingEnabled = true;
             this.fakturaÅterlämnadeböckerListBox.Location = new System.Drawing.Point(287, 86);
             this.fakturaÅterlämnadeböckerListBox.Name = "fakturaÅterlämnadeböckerListBox";
-            this.fakturaÅterlämnadeböckerListBox.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this.fakturaÅterlämnadeböckerListBox.Size = new System.Drawing.Size(218, 95);
             this.fakturaÅterlämnadeböckerListBox.TabIndex = 13;
             this.fakturaÅterlämnadeböckerListBox.SelectedIndexChanged += new System.EventHandler(this.fakturaÅterlämnadeböckerListBox_SelectedIndexChanged);
