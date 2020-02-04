@@ -6,12 +6,9 @@ namespace BusinessLayer
 {
     public class Bokning
     {
-		private List<Faktura> fakturaLista;
-		public List<Faktura> FakturaLista
-		{
-			get { return fakturaLista; }
-			set { fakturaLista = value; }
-		}
+		
+		public List<Faktura> FakturaLista = new List<Faktura>();
+		
 
 		Expedit Expedit { get; set; }
 		Medlem Medlem { get; set; }
@@ -22,12 +19,8 @@ namespace BusinessLayer
 			get { return lånadeBöcker; }
 			set { lånadeBöcker = value; }
 		}
-		private List<Bok> återlämnadeBöcker;
-		public List<Bok> ÅterlämnadeBöcker
-		{
-			get { return återlämnadeBöcker; }
-			set { återlämnadeBöcker = value; }
-		}
+		public List<Bok> ÅterlämnadeBöcker = new List<Bok>();
+		
 
 		private string bokningsNummer;
 		public string BokningsNummer

@@ -45,6 +45,7 @@
             this.återlämningsDatumLabel = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.medlemsIDlabel = new System.Windows.Forms.Label();
+            this.bokningSkapadMeddelande = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // tillbakaBtn
@@ -204,12 +205,22 @@
             this.medlemsIDlabel.TabIndex = 16;
             this.medlemsIDlabel.Text = "----";
             // 
-            // Bokning
+            // bokningSkapadMeddelande
+            // 
+            this.bokningSkapadMeddelande.AutoSize = true;
+            this.bokningSkapadMeddelande.ForeColor = System.Drawing.Color.Maroon;
+            this.bokningSkapadMeddelande.Location = new System.Drawing.Point(225, 337);
+            this.bokningSkapadMeddelande.Name = "bokningSkapadMeddelande";
+            this.bokningSkapadMeddelande.Size = new System.Drawing.Size(0, 13);
+            this.bokningSkapadMeddelande.TabIndex = 17;
+            // 
+            // SkapaBokning
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(459, 396);
             this.ControlBox = false;
+            this.Controls.Add(this.bokningSkapadMeddelande);
             this.Controls.Add(this.medlemsIDlabel);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.återlämningsDatumLabel);
@@ -227,7 +238,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tillgängligaBöckerListBox);
             this.Controls.Add(this.tillbakaBtn);
-            this.Name = "Bokning";
+            this.Name = "SkapaBokning";
             this.Text = "Meny";
             this.Load += new System.EventHandler(this.Meny_Load);
             this.ResumeLayout(false);
@@ -254,5 +265,6 @@
         private System.Windows.Forms.Label återlämningsDatumLabel;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label medlemsIDlabel;
+        private System.Windows.Forms.Label bokningSkapadMeddelande;
     }
 }

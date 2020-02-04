@@ -131,6 +131,7 @@ namespace Presentationslager
             tillgängligaBöckerListBox.DataSource = GivenEttDatum_ReturneraEnListaMedTillgängligaBöcker(startDatumPicker.Value);
             tillgängligaBöckerListBox.DisplayMember = "BokTitelFörfattare";
             återlämningsDatumLabel.Text = startDatumPicker.Value.AddDays(14).ToString("dd/MMMM/yyyy");
+            GömBokningsID();
         }
 
         public List<Bok> GivenEttDatum_ReturneraEnListaMedTillgängligaBöcker(DateTime valtStartDatum)
@@ -195,9 +196,17 @@ namespace Presentationslager
         private void bokaBtn_Click(object sender, EventArgs e)
         {
             SparaBokning();
+            
         }
+        public void SkrivUtBokningsID(string id)
+        {
+            bokningSkapadMeddelande.Text = "Din bokning är skapad med bokningsID: " + id;
+        }
+        public void GömBokningsID()
+        {
+            bokningSkapadMeddelande.Text = "";
 
-
+        }
         public void SparaBokning()
         {
             string bokningsnummer = (Drm.HämtaAllaBokningar().Count() + 1).ToString();
@@ -219,6 +228,7 @@ namespace Presentationslager
 
             Drm.LäggTillBokning(b);
             LäggTillBokningTillBok(valdaBöcker, b);
+            SkrivUtBokningsID(b.BokningsNummer);
         }
 
         public void LäggTillBokningTillBok(List<Bok> böcker, Bokning bokning)

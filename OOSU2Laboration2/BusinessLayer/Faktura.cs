@@ -7,6 +7,7 @@ namespace BusinessLayer
     public class Faktura
     {
 		Bokning faktureradBokning { get; set; }
+		public List<Bok> faktureradeBöcker = new List<Bok>();
 
 		private string fakturaNummer;
 
@@ -36,13 +37,14 @@ namespace BusinessLayer
 			get { return förfallodatum; }
 			set { förfallodatum = value; }
 		}
-		public Faktura(string fakturanummer, int totalpris, DateTime startDatum, DateTime förfallodatum, Bokning bokning)
+		public Faktura(string fakturanummer, int totalpris, DateTime startDatum, DateTime förfallodatum, Bokning bokning, List<Bok> återlämnadeBöcker)
 		{
 			FakturaNummer = fakturanummer;
 			Totalpris = totalpris;
 			StartDatum = startDatum;
 			FörfalloDatum = förfallodatum;
 			faktureradBokning = bokning;
+			faktureradeBöcker = återlämnadeBöcker;
 		}
 	}
 }
