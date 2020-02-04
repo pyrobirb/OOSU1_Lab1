@@ -148,46 +148,39 @@ namespace Presentationslager
             {
 
 
-                
-
-                    foreach (Bokning bokning in allaBokningar)
-                    {
-                        foreach (Bok lånadBok in bokning.LånadeBöcker)
-                        {
-                            if (!(((bokning.SlutDatum < valtStartDatum) && (bokning.StartDatum < valtStartDatum)) || ((bokning.StartDatum > valtSlutDatum && bokning.SlutDatum > valtSlutDatum))))
-                            {
-                                uppbokadeBöcker.Add(lånadBok);
-                            }
-                        }
-
-                    }
-                
-
-                tillgängligaBöcker.RemoveAll(uppbokadeBöcker, bokID);
-
-
-                var böckerAttTaBort = from tillgängligBok in tillgängligaBöcker
-                                      join uppbokadBok in uppbokadeBöcker on tillgängligBok.BokID equals uppbokadBok.BokID
-                                      select new { tillgängligBok.BokID };
-
-                
-                
-
-                for (int i = 0; i < tillgängligaBöcker.Count() - 1; i++)
+                foreach (Bokning bokning in allaBokningar)
                 {
-                    for (int j = 0; j < uppbokadeBöcker.Count() - 1; j++)
+                    foreach (Bok lånadBok in bokning.LånadeBöcker)
                     {
-                        foreach (var bokAttTaBort in böckerAttTaBort)
+                        if (!(((bokning.SlutDatum < valtStartDatum) && (bokning.StartDatum < valtStartDatum)) || ((bokning.StartDatum > valtSlutDatum && bokning.SlutDatum > valtSlutDatum))))
                         {
-                            if (true)
-                            {
-
-                            }
+                            uppbokadeBöcker.Add(lånadBok);
                         }
-
                     }
-
                 }
+
+                
+
+
+                IEnumerable<Bok> båda = tillgängligaBöcker.Except(uppbokadeBöcker).ToList();
+                
+
+
+                //foreach (var Bok in böckerAttTaBort)
+                //{
+                //    foreach (Bok bok in tillgängligaBöcker)
+                //    {
+                //        if (Bok == bok)
+                //        {
+                //            tillgängligaBöcker.Remove(bok);
+                //            break;
+                //        }
+                //    }
+                //}
+
+                //nyaTillgängligaBöcker = tillgängligaBöcker;
+
+
 
 
 
