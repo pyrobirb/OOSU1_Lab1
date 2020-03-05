@@ -14,28 +14,28 @@ namespace BusinessLayer
 		public string FakturaNummer
 		{
 			get { return fakturaNummer; }
-			set { fakturaNummer = value; }
+			private set { fakturaNummer = value; }
 		}
 
 		private int totalpris;
 		public int Totalpris
 		{
 			get { return totalpris; }
-			set { totalpris = value; }
+			private set { totalpris = value; }
 		}
 
 		private DateTime startDatum;
 		public DateTime StartDatum
 		{
 			get { return startDatum; }
-			set { startDatum = value; }
+			private set { startDatum = value; }
 		}
 
 		private DateTime förfallodatum;
 		public DateTime FörfalloDatum
 		{
 			get { return förfallodatum; }
-			set { förfallodatum = value; }
+			private set { förfallodatum = value; }
 		}
 		public Faktura(string fakturanummer, int totalpris, DateTime startDatum, DateTime förfallodatum, Bokning bokning, List<Bok> återlämnadeBöcker)
 		{

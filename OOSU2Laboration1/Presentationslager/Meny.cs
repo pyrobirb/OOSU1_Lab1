@@ -13,15 +13,13 @@ namespace Presentationslager
 {
     public partial class Meny : Form
     {
-        DataRepositoryManager Drm { get; set; }
+        BibliotekController BibliotekController { get; set; }
         
-        string inloggadAnvändare { get; set; }
         
-        public Meny(DataRepositoryManager drm, string anvID)
+        public Meny(BibliotekController bibliotekController)
         {
             InitializeComponent();
-            Drm = drm;
-            inloggadAnvändare = anvID;
+            BibliotekController = bibliotekController;
         }
 
         private void BokningBtn_Click(object sender, EventArgs e)
@@ -35,7 +33,7 @@ namespace Presentationslager
             }
             else
             {
-                SkapaBokning nyBokning = new SkapaBokning(Drm, inloggadAnvändare);
+                SkapaBokning nyBokning = new SkapaBokning(BibliotekController);
                 nyBokning.Show();
                 this.Hide();
             }
@@ -58,7 +56,7 @@ namespace Presentationslager
             }
             else
             {
-                ÅterlämningAvBöcker nyåterL = new ÅterlämningAvBöcker(Drm, inloggadAnvändare);
+                ÅterlämningAvBöcker nyåterL = new ÅterlämningAvBöcker(BibliotekController);
                 nyåterL.Show();
                 this.Hide();
             }
@@ -70,30 +68,27 @@ namespace Presentationslager
         }
         public void TillbakaTillLogin()
         {
-            Login login = new Login(Drm);
+            Login login = new Login(BibliotekController);
             login.Show();
             this.Hide();
         }
 
-        public void InloggadAnvändare(string användarID)
-        {
-            inloggadAnvändare = användarID;
-        }
+        
 
         private void Meny_Load(object sender, EventArgs e)
         {
-            inloggadAnvändareLabel.Text = HämtaInloggadExpedit();
+            inloggadAnvändareLabel.Text = BibliotekController.HämtaInloggadExpedit();
         }
 
         public string HämtaInloggadExpedit()
         {
 
-            List<Expedit> allaexpediter = (List<Expedit>)Drm.HämtaAllaExpediter();
+            List<Expedit> allaexpediter = (List<Expedit>)BibliotekController.HämtaAllaExpediter();
 
             var expedit =
                 (from exp in allaexpediter
-                where exp.AnställningsNummer == inloggadAnvändare
-                select exp.ExpeditFulltNamn).SingleOrDefault();
+                 where exp.AnställningsNummer == GLOBALS.inloggadExpeditID
+                 select exp.ExpeditFulltNamn).SingleOrDefault();
 
             return expedit;
         }

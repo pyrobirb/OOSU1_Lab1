@@ -13,21 +13,19 @@ namespace Presentationslager
 {
     public partial class ÅterlämningAvBöcker : Form
     {
-        DataRepositoryManager Drm { get; set; }
-        string inloggadAnvändare { get; set; }
+        BibliotekController BibliotekController { get; set; }
 
-        public ÅterlämningAvBöcker(DataRepositoryManager drm, string anvID)
+        public ÅterlämningAvBöcker(BibliotekController bibliotekController)
         {
             InitializeComponent();
-            Drm = drm;
-            inloggadAnvändare = anvID;
+            BibliotekController = bibliotekController;
             UppdateraBokningsLista();
         }
 
         public void UppdateraBokningsLista()
         {
             allaBokningarcomboBox.DataSource = null;
-            var allabokningar = Drm.HämtaAllaBokningar();
+            var allabokningar = BibliotekController.HämtaAllaBokningar();
             allaBokningarcomboBox.DataSource = allabokningar;
             allaBokningarcomboBox.DisplayMember = "BokningsNummer";
             allaBokningarcomboBox.ValueMember = "BokningsNummer";
@@ -37,9 +35,7 @@ namespace Presentationslager
             if (allaBokningarcomboBox.SelectedItem != null)
             {
                 UppdateraListBoxar();
-               
             }
-
         }
 
         private void ÅterlämningAvBöcker_Load(object sender, EventArgs e)
@@ -53,53 +49,29 @@ namespace Presentationslager
         }
         public void TillbakaTillMeny()
         {
-            Meny meny = new Meny(Drm, inloggadAnvändare);
+            Meny meny = new Meny(BibliotekController);
             meny.Show();
             this.Hide();
         }
 
         private void återlämningBtn_Click(object sender, EventArgs e)
         {
-            ÅterLämnaMarkeradeBöcker();
-        }
-
-        public void ÅterLämnaMarkeradeBöcker()
-        {
             var valdBokning = (Bokning)allaBokningarcomboBox.SelectedItem;
+
             List<Bok> valdaBöcker = new List<Bok>();
-            var återlämningsDatum = DateTime.Now;
-
-
             foreach (Bok bok in allaBöckerPåBoknListBox.SelectedItems)
             {
                 valdaBöcker.Add(bok);
             }
 
-            //faktura
-            int fakturaID;
-            if (valdBokning.FakturaLista == null)
-            {
-                fakturaID = 0;
-            }
-            else
-            {
-                fakturaID = valdBokning.FakturaLista.Count();
-            }
+            Faktura faktura = BibliotekController.ÅterlämnaMarkeradeBöckerOchGenereraFaktura(valdBokning, valdaBöcker);
+            SkrivUtFakturaID(faktura);
 
-
-            string fakturaNummer = valdBokning.BokningsNummer + fakturaID.ToString();
-
-            var nyaTotalPriset = BeräknaTotalPris(valdaBöcker, återlämningsDatum, valdBokning);
-
-            var förfalloDatum = återlämningsDatum.AddDays(30);
-            Faktura f = new Faktura(fakturaNummer, nyaTotalPriset, återlämningsDatum, förfalloDatum, valdBokning, valdaBöcker);
-
-            Drm.LäggTillFaktura(f);
 
             if (valdBokning.FakturaLista == null || valdBokning.FakturaLista.Count() == 0)
             {
                 List<Faktura> fList = new List<Faktura>();
-                fList.Add(f);
+                fList.Add(faktura);
                 valdBokning.FakturaLista = fList;
                 FakturorComboBox.DataSource = null;
                 FakturorComboBox.DataSource = valdBokning.FakturaLista;
@@ -108,7 +80,7 @@ namespace Presentationslager
             else
             {
                 var fList = valdBokning.FakturaLista;
-                fList.Add(f);
+                fList.Add(faktura);
 
                 valdBokning.FakturaLista = fList;
                 FakturorComboBox.DataSource = null;
@@ -119,10 +91,17 @@ namespace Presentationslager
 
             UppdateraBoklistor(valdaBöcker, valdBokning);
 
-
             UppdateraFakturorÅterlämnadeBöcker();
             UppdateraListBoxar();
+
         }
+
+        private void SkrivUtFakturaID(Faktura f)
+        {
+            nyFakturaGenereradID.Text = f.FakturaNummer;
+        }
+
+       
 
         public void UppdateraListBoxar()
         {
@@ -131,13 +110,7 @@ namespace Presentationslager
                 allaBöckerPåBoknListBox.DataSource = null;
                 allaBöckerPåBoknListBox.DataSource = ((Bokning)allaBokningarcomboBox.SelectedItem).LånadeBöcker;
                 allaBöckerPåBoknListBox.DisplayMember = "BokTitelFörfattare";
-
-                
-
             }
-
-
-
         }
         
 
@@ -164,20 +137,7 @@ namespace Presentationslager
         }
 
 
-        public int BeräknaTotalPris(List<Bok> böcker, DateTime återlämningsDatum, Bokning bokning)
-        {
-
-            foreach (Bok bok in böcker)
-            {
-                if (återlämningsDatum > bokning.SlutDatum)
-                {
-                    int TotalPris = Convert.ToInt32(((återlämningsDatum - bokning.SlutDatum).TotalDays)) * 10;
-                    return TotalPris;
-
-                }
-            }
-            return 0;
-        }
+        
 
         private void FakturorComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {

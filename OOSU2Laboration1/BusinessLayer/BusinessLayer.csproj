@@ -43,7 +43,7 @@
   <ItemGroup>
     <Compile Include="Bok.cs" />
     <Compile Include="Bokning.cs" />
-    <Compile Include="DataRepositoryManager.cs" />
+    <Compile Include="BibliotekController.cs" />
     <Compile Include="DataRepository\BokningRepository.cs" />
     <Compile Include="DataRepository\BokRepository.cs" />
     <Compile Include="DataRepository\ExpeditRepository.cs" />
@@ -52,6 +52,7 @@
     <Compile Include="DataRepository\MedlemRepository.cs" />
     <Compile Include="Expedit.cs" />
     <Compile Include="Faktura.cs" />
+    <Compile Include="GLOBALS.cs" />
     <Compile Include="Medlem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

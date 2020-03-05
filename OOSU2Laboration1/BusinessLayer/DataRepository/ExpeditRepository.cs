@@ -12,14 +12,14 @@ namespace BusinessLayer.DataRepository
         {
             foreach (Expedit expedit in expediterLista)
             {
-                if (expedit.AnställningsNummer == id)
+                if (expedit.AnställningsNummer.ToLower() == id.ToLower())
                 {
                     Expedit hittadExpedit = expedit;
                     return hittadExpedit;
                 }
                 else
                 {
-                    return null;
+                    continue;
                 }
             }
             return null;

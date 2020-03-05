@@ -14,13 +14,11 @@ namespace Presentationslager
 {
     public partial class SkapaBokning : Form
     {
-        DataRepositoryManager Drm { get; set; }
-        string inloggadAnvändare { get; set; }
-        public SkapaBokning(DataRepositoryManager drm, string anvID)
+        BibliotekController BibliotekController { get; set; }
+        public SkapaBokning(BibliotekController bibliotekController)
         {
             InitializeComponent();
-            Drm = drm;
-            inloggadAnvändare = anvID;
+            BibliotekController = bibliotekController;
             GenereraObjekt();
             UppdateraDataSourceRollAnvändare();
         }
@@ -30,35 +28,12 @@ namespace Presentationslager
 
         }
 
-        public string HämtaInloggadAnvändare()
-        {
-            List<Expedit> allaexpediter = (List<Expedit>)Drm.HämtaAllaExpediter();
-
-            var expedit =
-                (from exp in allaexpediter
-                 where exp.AnställningsNummer == inloggadAnvändare
-                 select exp.ExpeditFulltNamn).SingleOrDefault();
-
-            return expedit;
-        }
-        public string HämtaInloggadAnvändareRoll()
-        {
-            List<Expedit> allaexpediter = (List<Expedit>)Drm.HämtaAllaExpediter();
-
-            var expedit =
-                (from exp in allaexpediter
-                 where exp.AnställningsNummer == inloggadAnvändare
-                 select exp.Roll).SingleOrDefault();
-
-            return expedit;
-        }
-
         public void UppdateraDataSourceRollAnvändare()
         {
-            inloggadAnvändareLabel.Text = HämtaInloggadAnvändare();
-            rollLabel.Text = HämtaInloggadAnvändareRoll();
+            inloggadAnvändareLabel.Text = BibliotekController.HämtaExpeditMedID(GLOBALS.inloggadExpeditID).ExpeditFulltNamn;
+            rollLabel.Text = BibliotekController.HämtaExpeditMedID(GLOBALS.inloggadExpeditID).Roll;
 
-            medlemComboBox.DataSource = Drm.HämtaAllaMedlemmar();
+            medlemComboBox.DataSource = BibliotekController.HämtaAllaMedlemmar();
             medlemComboBox.DisplayMember = "MedlemFulltNamn";
             medlemComboBox.ValueMember = "MedlemsNummer";
         }
@@ -67,7 +42,7 @@ namespace Presentationslager
 
         public void GenereraObjekt()
         {
-            if ((Drm.HämtaAllaMedlemmar().Count() < 1) && (Drm.HämtaAllaBocker().Count() < 1))
+            if ((BibliotekController.HämtaAllaMedlemmar().Count() < 1) && (BibliotekController.HämtaAllaBocker().Count() < 1))
             {
 
                 //Medlemmar
@@ -81,26 +56,24 @@ namespace Presentationslager
 
                 foreach (Medlem medlem in medlemmar)
                 {
-                    Drm.LäggTillMedlem(medlem);
+                    BibliotekController.LäggTillMedlem(medlem);
                 }
 
 
                 //Böcker
-                List<Bokning> tomBokningsLista = new List<Bokning>();
-                Bok b1 = new Bok("1788478126", "C# 8.0 and .NET Core 3.0", "Mark J. Price", 1, tomBokningsLista);
-                Bok b2 = new Bok("0134494164", "Clean Architecture", "Robert C. Martin", 2, tomBokningsLista); ;
-                Bok b3 = new Bok("9780132350884", "Clean Code", "Robert C. Martin", 3, tomBokningsLista);
-                Bok b4 = new Bok("0137081073", "The Clean Coder", "Robert C. Martin", 4, tomBokningsLista);
-                Bok b5 = new Bok("1844132390", "Man's Search For Meaning", "Viktor E. Frankl", 5, tomBokningsLista);
-                Bok b6 = new Bok("9780722532935", "The Alchemist", "Paul Coelho", 6, tomBokningsLista);
-                Bok b7 = new Bok("9780316029186", "The Last Wish", "Andrzej Sapkowski", 7, tomBokningsLista);
-                Bok b8 = new Bok("9780316029186", "The Last Wish", "Andrzej Sapkowski", 8, tomBokningsLista);
+                Bok b1 = new Bok("1788478126", "C# 8.0 and .NET Core 3.0", "Mark J. Price", 1);
+                Bok b2 = new Bok("0134494164", "Clean Architecture", "Robert C. Martin", 2); ;
+                Bok b3 = new Bok("9780132350884", "Clean Code", "Robert C. Martin", 3);
+                Bok b4 = new Bok("0137081073", "The Clean Coder", "Robert C. Martin", 4);
+                Bok b5 = new Bok("1844132390", "Man's Search For Meaning", "Viktor E. Frankl", 5);
+                Bok b6 = new Bok("9780722532935", "The Alchemist", "Paul Coelho", 6);
+                Bok b7 = new Bok("9780316029186", "The Last Wish", "Andrzej Sapkowski", 7);
+                Bok b8 = new Bok("9780316029186", "The Last Wish", "Andrzej Sapkowski", 8);
 
                 IEnumerable<Bok> böcker = new List<Bok>() { b1, b2, b3, b4, b5, b6, b7, b8 };
-
                 foreach (Bok bok in böcker)
                 {
-                    Drm.LäggTillBok(bok);
+                    BibliotekController.LäggTillBok(bok);
                 }
             }
 
@@ -115,7 +88,7 @@ namespace Presentationslager
 
         public void TillbakaTillMeny()
         {
-            Meny meny = new Meny(Drm, inloggadAnvändare);
+            Meny meny = new Meny(BibliotekController);
             meny.Show();
             this.Hide();
         }
@@ -128,66 +101,13 @@ namespace Presentationslager
         private void startDatumPicker_ValueChanged(object sender, EventArgs e)
         {
             tillgängligaBöckerListBox.DataSource = null;
-            tillgängligaBöckerListBox.DataSource = GivenEttDatum_ReturneraEnListaMedTillgängligaBöcker(startDatumPicker.Value);
+            tillgängligaBöckerListBox.DataSource = BibliotekController.GivenEttDatum_ReturneraEnListaMedTillgängligaBöcker(startDatumPicker.Value);
+                
             tillgängligaBöckerListBox.DisplayMember = "BokTitelFörfattare";
             återlämningsDatumLabel.Text = startDatumPicker.Value.AddDays(14).ToString("dd/MMMM/yyyy");
             GömBokningsID();
         }
-
-        public List<Bok> GivenEttDatum_ReturneraEnListaMedTillgängligaBöcker(DateTime valtStartDatum)
-        {
-            List<Bok> tillgängligaBöcker = (List<Bok>)Drm.HämtaAllaBocker();
-            List<Bok> uppbokadeBöcker = new List<Bok>();
-            List<Bokning> allaBokningar = (List<Bokning>)Drm.HämtaAllaBokningar();
-
-            DateTime valtSlutDatum = valtStartDatum.AddDays(14);
-
-            List<Bok> nyaTillgängligaBöcker = new List<Bok>();
-
-
-            if (Drm.HämtaAllaBokningar().Any())
-            {
-
-
-                foreach (Bokning bokning in allaBokningar)
-                {
-                    foreach (Bok lånadBok in bokning.LånadeBöcker)
-                    {
-                        if (!(((bokning.SlutDatum < valtStartDatum) && (bokning.StartDatum < valtStartDatum)) || ((bokning.StartDatum > valtSlutDatum && bokning.SlutDatum > valtSlutDatum))))
-                        {
-                            uppbokadeBöcker.Add(lånadBok);
-                        }
-                    }
-                }
-
-                
-
-
-                IEnumerable<Bok> båda = tillgängligaBöcker.Except(uppbokadeBöcker).ToList();
-
-
-
-                
-
-                nyaTillgängligaBöcker = (List<Bok>)båda.ToList();
-
-
-
-
-
-            }
-            else
-            {
-                nyaTillgängligaBöcker = (List<Bok>)Drm.HämtaAllaBocker();
-
-            }
-
-
-
-            return nyaTillgängligaBöcker;
-        }
-
-
+  
         private void medlemComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             medlemsIDlabel.Text = ((Medlem)medlemComboBox.SelectedItem).Medlemsnummer;
@@ -195,26 +115,6 @@ namespace Presentationslager
 
         private void bokaBtn_Click(object sender, EventArgs e)
         {
-            SparaBokning();
-            
-        }
-        public void SkrivUtBokningsID(string id)
-        {
-            bokningSkapadMeddelande.Text = "Din bokning är skapad med bokningsID: " + id;
-        }
-        public void GömBokningsID()
-        {
-            bokningSkapadMeddelande.Text = "";
-
-        }
-        public void SparaBokning()
-        {
-            string bokningsnummer = (Drm.HämtaAllaBokningar().Count() + 1).ToString();
-            var startDatum = startDatumPicker.Value;
-            var slutDatum = startDatum.AddDays(14);
-            var expedit = Drm.HämtaExpeditMedID(inloggadAnvändare);
-            var medlem = (Medlem)medlemComboBox.SelectedItem;
-
             List<Bok> valdaBöcker = new List<Bok>();
 
             foreach (Bok bok in tillgängligaBöckerListBox.SelectedItems)
@@ -222,22 +122,17 @@ namespace Presentationslager
                 valdaBöcker.Add(bok);
             }
 
-
-
-            Bokning b = new Bokning(bokningsnummer, startDatum, slutDatum, expedit, medlem, valdaBöcker);
-
-            Drm.LäggTillBokning(b);
-            LäggTillBokningTillBok(valdaBöcker, b);
-            SkrivUtBokningsID(b.BokningsNummer);
+            SkrivUtBokningsID(BibliotekController.SparaBokning(((Medlem)medlemComboBox.SelectedItem).Medlemsnummer, valdaBöcker, startDatumPicker.Value));
+            
         }
-
-        public void LäggTillBokningTillBok(List<Bok> böcker, Bokning bokning)
+        public void SkrivUtBokningsID(Bokning bokning)
         {
-            foreach (Bok bok in böcker)
-            {
-                bok.BokningsLista.Add(bokning);
-            }
+            bokningSkapadMeddelande.Text = "Din bokning är skapad med bokningsID: " + bokning.BokningsNummer;
         }
+        public void GömBokningsID()
+        {
+            bokningSkapadMeddelande.Text = "";
 
+        }
     }
 }

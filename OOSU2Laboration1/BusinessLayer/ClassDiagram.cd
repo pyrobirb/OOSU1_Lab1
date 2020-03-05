@@ -1,25 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram MajorVersion="1" MinorVersion="1">
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
   <Class Name="BusinessLayer.Bok">
-    <Position X="6.25" Y="0.5" Width="2.5" />
+    <Position X="8.5" Y="0.5" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>QAAIAAAACAAAABAAAAAwAAAAEAQAABAAABAAAAAQAAI=</HashCode>
+      <HashCode>QAAIAAAACAAAABAAAAAAAAAAAAQAABAAABAAAAAQAAI=</HashCode>
       <FileName>Bok.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BusinessLayer.Bokning">
-    <Position X="8.5" Y="5" Width="2.5" />
+    <Position X="8.5" Y="5" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AACAAAAAAAAAAAAAAAEUAQAABCAAAAAgAAgEAAAAgAA=</HashCode>
       <FileName>Bokning.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Medlem" />
       <Property Name="Expedit" />
+      <Property Name="Medlem" />
     </ShowAsAssociation>
     <ShowAsCollectionAssociation>
-      <Field Name="LånadeBöcker" />
       <Field Name="FakturaLista" />
+      <Field Name="LånadeBöcker" />
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="BusinessLayer.Medlem">
@@ -30,18 +30,121 @@
     </TypeIdentifier>
   </Class>
   <Class Name="BusinessLayer.Faktura">
-    <Position X="8.5" Y="9.75" Width="2.5" />
+    <Position X="8.5" Y="9.75" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAEAAAABAAAAAAAAAAAAAAAACAAAAAgIAEIAAAACAA=</HashCode>
       <FileName>Faktura.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BusinessLayer.Expedit">
-    <Position X="14" Y="5.25" Width="2" />
+    <Position X="14" Y="5.25" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAQAAAAEIACAAiAggAAAKAIAAAAAAAAAAAAA=</HashCode>
       <FileName>Expedit.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="BusinessLayer.BibliotekController">
+    <Position X="18.75" Y="4.25" Width="5.5" />
+    <AssociationLine Name="BoknRep" Type="BusinessLayer.DataRepository.BokningRepository" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="24.25" Y="7.75" />
+        <Point X="26.438" Y="7.75" />
+        <Point X="26.438" Y="7.253" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="BokRep" Type="BusinessLayer.DataRepository.BokRepository" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="24.25" Y="8.125" />
+        <Point X="29.625" Y="8.125" />
+        <Point X="29.625" Y="7.253" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="ExpRep" Type="BusinessLayer.DataRepository.ExpeditRepository" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="24.25" Y="8.562" />
+        <Point X="33" Y="8.562" />
+        <Point X="33" Y="7.253" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="FakRep" Type="BusinessLayer.DataRepository.FakturaRepository" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="24.25" Y="9.562" />
+        <Point X="39.5" Y="9.562" />
+        <Point X="39.5" Y="7.253" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="MedRep" Type="BusinessLayer.DataRepository.MedlemRepository" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="24.25" Y="9.062" />
+        <Point X="36.25" Y="9.062" />
+        <Point X="36.25" Y="7.253" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>ggAKFIEEFA4AAgAEQcgBQYCAABQABMAAAAAYAgIEAAA=</HashCode>
+      <FileName>BibliotekController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="BoknRep" />
+      <Field Name="BokRep" />
+      <Field Name="ExpRep" />
+      <Field Name="FakRep" />
+      <Field Name="MedRep" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BusinessLayer.GLOBALS">
+    <Position X="19.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>GLOBALS.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BusinessLayer.DataRepository.BokningRepository">
+    <Position X="25" Y="5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAACAAIAAAAABAAAAAAAAAAAAAAAAABAQAAAAAAA=</HashCode>
+      <FileName>DataRepository\BokningRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BusinessLayer.DataRepository.BokRepository">
+    <Position X="28.25" Y="5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAACCAIAAAAAAAAAAAAAAAAAAAAAAABAQAAAAAAA=</HashCode>
+      <FileName>DataRepository\BokRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BusinessLayer.DataRepository.ExpeditRepository">
+    <Position X="31.5" Y="5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAACAACAAIAAIAAAAAAAAAAAAAAAAAAAABAQAAAAAAA=</HashCode>
+      <FileName>DataRepository\ExpeditRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BusinessLayer.DataRepository.FakturaRepository">
+    <Position X="38" Y="5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAACAACAAIAAAAAAAAAAAAAAAAAAAAAAABAQAAEAAAA=</HashCode>
+      <FileName>DataRepository\FakturaRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BusinessLayer.DataRepository.MedlemRepository">
+    <Position X="34.75" Y="5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAACAACAAIAAAAAAAAAAAAgAAAAAAAAAABAQAAAAAAA=</HashCode>
+      <FileName>DataRepository\MedlemRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="BusinessLayer.DataRepository.IRepository&lt;T&gt;">
+    <Position X="31.5" Y="2.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAACAAIAAAAAAAAAAAAAAAAAAAAAAABAQAAAAAAA=</HashCode>
+      <FileName>DataRepository\IRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
   <Font Name="Arial" Size="10" />
 </ClassDiagram>

@@ -42,6 +42,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.fakturaÅterlämnadeböckerListBox = new System.Windows.Forms.ListBox();
             this.refreshBtn = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.nyFakturaGenereradID = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // allaBöckerPåBoknListBox
@@ -173,12 +175,31 @@
             this.refreshBtn.UseVisualStyleBackColor = true;
             this.refreshBtn.Click += new System.EventHandler(this.refreshBtn_Click);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(287, 205);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(133, 13);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "Ny Faktura genererad (ID):";
+            // 
+            // nyFakturaGenereradID
+            // 
+            this.nyFakturaGenereradID.AutoSize = true;
+            this.nyFakturaGenereradID.Location = new System.Drawing.Point(427, 205);
+            this.nyFakturaGenereradID.Name = "nyFakturaGenereradID";
+            this.nyFakturaGenereradID.Size = new System.Drawing.Size(0, 13);
+            this.nyFakturaGenereradID.TabIndex = 16;
+            // 
             // ÅterlämningAvBöcker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(534, 305);
             this.ControlBox = false;
+            this.Controls.Add(this.nyFakturaGenereradID);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.refreshBtn);
             this.Controls.Add(this.fakturaÅterlämnadeböckerListBox);
             this.Controls.Add(this.label5);
@@ -216,5 +237,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ListBox fakturaÅterlämnadeböckerListBox;
         private System.Windows.Forms.Button refreshBtn;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label nyFakturaGenereradID;
     }
 }

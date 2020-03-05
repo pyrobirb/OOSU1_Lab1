@@ -17,7 +17,7 @@ namespace Presentationslager
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Login(new DataRepositoryManager())); //instansierar DRM
+            Application.Run(new Login(new BibliotekController())); //instansierar BibliotekControllern
         }
     }
 }

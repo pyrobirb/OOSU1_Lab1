@@ -10,34 +10,34 @@ namespace BusinessLayer
 		public string AnställningsNummer
 		{
 			get { return anställningsNummer; }
-			set { anställningsNummer = value; }
+			private set { anställningsNummer = value; }
 		}
 
 		private string förnamn;
 		public string Förnamn
 		{
 			get { return förnamn; }
-			set { förnamn = value; }
+			private set { förnamn = value; }
 		}
 		private string efternamn;
 		public string Efternamn
 		{
 			get { return efternamn; }
-			set { efternamn = value; }
+			private set { efternamn = value; }
 		}
 
 		private string lösenord;
 		public string Lösenord
 		{
 			get { return lösenord; }
-			set { lösenord = value; }
+			private set { lösenord = value; }
 		}
 
 		private string roll;
 		public string Roll
 		{
 			get { return roll; }
-			set { roll = value; }
+			private set { roll = value; }
 		}
 
 		public string ExpeditFulltNamn

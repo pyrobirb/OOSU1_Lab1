@@ -13,19 +13,18 @@ namespace Presentationslager
 {
     public partial class Login : Form
     {
-
-        DataRepositoryManager Drm { get; set; }
-        public Login(DataRepositoryManager drm)
+        BibliotekController BibliotekController { get; set; }
+        public Login(BibliotekController bibliotekController)
         {
             InitializeComponent();
-            Drm = drm;
+            BibliotekController = bibliotekController;
             GenereraObjekt();
             UppdateraExpediter();
         }
 
         public void UppdateraExpediter()
         {
-            expediterComboBox.DataSource = Drm.HämtaAllaExpediter();
+            expediterComboBox.DataSource = BibliotekController.HämtaAllaExpediter();
             expediterComboBox.DisplayMember = "ExpeditFulltNamn";
             expediterComboBox.ValueMember = "AnställningsNummer";
         }
@@ -34,34 +33,18 @@ namespace Presentationslager
 
         public void GenereraObjekt()
         {
-            if (Drm.HämtaAllaExpediter().Count() < 1)
+            if (BibliotekController.HämtaAllaExpediter().Count() < 1)
             {
                 Expedit expedit = new Expedit("1", "Klas", "Göran", "klas123", "Bibliotekschef");
                 Expedit expedit1 = new Expedit("2", "Klara", "Göransson", "klara123", "Expedit");
-                Drm.LäggTillExpedit(expedit);
-                Drm.LäggTillExpedit(expedit1);
+                BibliotekController.LäggTillExpedit(expedit);
+                BibliotekController.LäggTillExpedit(expedit1);
             }
         }
 
         #endregion
 
-        public bool KontrolleraInloggning(string ID, string Lösenord)
-        {
-            var expediter = Drm.HämtaAllaExpediter();
-
-            if ((ID != null) || (Lösenord != null))
-            {
-                foreach (var expedit in expediter)
-                {
-                    if ((ID == expedit.AnställningsNummer) && (Lösenord == expedit.Lösenord))
-                    {
-                        return true;
-                    }
-                }
-                return false;
-            }
-            else return false;
-        }
+        
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -75,10 +58,10 @@ namespace Presentationslager
 
         private void LoggaInBtn_Click(object sender, EventArgs e)
         {
-            if (KontrolleraInloggning(AnvIDTextBox.Text, LösenordTextBox.Text))
+            if (BibliotekController.KontrolleraInloggning(AnvIDTextBox.Text, LösenordTextBox.Text))
             {
-                Meny meny = new Meny(Drm, AnvIDTextBox.Text);
-                meny.InloggadAnvändare(AnvIDTextBox.Text);
+                Meny meny = new Meny(BibliotekController);
+                BibliotekController.SättInloggadExpedit(((Expedit)expediterComboBox.SelectedItem).AnställningsNummer);
                 meny.Show();
                 this.Hide();
             }
@@ -87,7 +70,6 @@ namespace Presentationslager
                 felLösenLabel.Text = "Fel lösenord eller ID";
             }
         }
-
 
         private void expediterComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {

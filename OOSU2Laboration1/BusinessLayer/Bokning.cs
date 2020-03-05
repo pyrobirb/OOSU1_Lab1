@@ -23,7 +23,7 @@ namespace BusinessLayer
 		public string BokningsNummer
 		{
 			get { return bokningsNummer; }
-			set { bokningsNummer = value; }
+			private set { bokningsNummer = value; }
 		}
 
 		//DateTime.Now.ToString("dd/MM/yyyy")
@@ -31,21 +31,21 @@ namespace BusinessLayer
 		public DateTime StartDatum
 		{
 			get { return startDatum; }
-			set { startDatum = value; }
+			private set { startDatum = value; }
 		}
 		//DateTime.AddMonths(Int32) Method
 		private DateTime slutDatum;
 		public DateTime SlutDatum
 		{
 			get { return slutDatum; }
-			set { slutDatum = value; }
+			private set { slutDatum = value; }
 		}
 
 		private DateTime återlämningsDatum;
 		public DateTime ÅterlämningsDatum
 		{
 			get { return återlämningsDatum; }
-			set { återlämningsDatum = value; }
+			private set { återlämningsDatum = value; }
 		}
 
 		public Bokning(string bokningsnummer, DateTime startDatum, DateTime slutDatum, Expedit expedit, Medlem medlem, List<Bok> lånadeBöcker)
