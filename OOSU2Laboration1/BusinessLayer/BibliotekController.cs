@@ -8,7 +8,7 @@ namespace BusinessLayer
 {
     public class BibliotekController
     {
-
+        public static string inloggadExpeditID { get; set; }
 
         DataRepository.BokningRepository BoknRep = new DataRepository.BokningRepository();
         DataRepository.BokRepository BokRep = new DataRepository.BokRepository();
@@ -131,7 +131,7 @@ namespace BusinessLayer
 
             var expedit =
                 (from exp in allaexpediter
-                 where exp.AnställningsNummer == GLOBALS.inloggadExpeditID
+                 where exp.AnställningsNummer == BibliotekController.inloggadExpeditID
                  select exp.ExpeditFulltNamn).SingleOrDefault();
 
             return expedit;
@@ -172,7 +172,7 @@ namespace BusinessLayer
 
         public void SättInloggadExpedit(string anställningsNummer)
         {
-            GLOBALS.inloggadExpeditID = anställningsNummer;
+            BibliotekController.inloggadExpeditID = anställningsNummer;
         }
 
         #endregion
@@ -274,7 +274,7 @@ namespace BusinessLayer
                 string bokningsnummer = (HämtaAllaBokningar().Count() + 1).ToString();
                 var startDatum = startdatum;
                 var slutDatum = startDatum.AddDays(14);
-                var expedit = HämtaExpeditMedID(GLOBALS.inloggadExpeditID);
+                var expedit = HämtaExpeditMedID(BibliotekController.inloggadExpeditID);
                 var medlem = HämtaMedlemMedID(medlemsnummer);
 
                 List<Bok> valdaBöcker = new List<Bok>();

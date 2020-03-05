@@ -30,8 +30,8 @@ namespace Presentationslager
 
         public void UppdateraDataSourceRollAnvändare()
         {
-            inloggadAnvändareLabel.Text = BibliotekController.HämtaExpeditMedID(GLOBALS.inloggadExpeditID).ExpeditFulltNamn;
-            rollLabel.Text = BibliotekController.HämtaExpeditMedID(GLOBALS.inloggadExpeditID).Roll;
+            inloggadAnvändareLabel.Text = BibliotekController.HämtaExpeditMedID(BibliotekController.inloggadExpeditID).ExpeditFulltNamn;
+            rollLabel.Text = BibliotekController.HämtaExpeditMedID(BibliotekController.inloggadExpeditID).Roll;
 
             medlemComboBox.DataSource = BibliotekController.HämtaAllaMedlemmar();
             medlemComboBox.DisplayMember = "MedlemFulltNamn";

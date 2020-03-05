@@ -52,7 +52,6 @@
     <Compile Include="DataRepository\MedlemRepository.cs" />
     <Compile Include="Expedit.cs" />
     <Compile Include="Faktura.cs" />
-    <Compile Include="GLOBALS.cs" />
     <Compile Include="Medlem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -87,7 +87,7 @@ namespace Presentationslager
 
             var expedit =
                 (from exp in allaexpediter
-                 where exp.AnställningsNummer == GLOBALS.inloggadExpeditID
+                 where exp.AnställningsNummer == BibliotekController.inloggadExpeditID
                  select exp.ExpeditFulltNamn).SingleOrDefault();
 
             return expedit;
